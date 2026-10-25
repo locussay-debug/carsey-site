@@ -1070,14 +1070,58 @@
       var btnWeb = document.getElementById('btn-open-web');
       var btnApk = document.getElementById('btn-download-apk');
 
+      var MAX_ATTEMPTS = 5;
+      var LOCKOUT_MS = 15 * 60 * 1000;
+      var STORAGE_KEY = 'carsey_convite_bloqueio_v1';
+      var memState = { falhas: 0, bloqueadoAte: 0 };
+
+      function readLockState() {
+        try {
+          var raw = window.localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var obj = JSON.parse(raw);
+            var now = Date.now();
+            if (obj.bloqueadoAte && obj.bloqueadoAte > now) {
+              return { falhas: obj.falhas || MAX_ATTEMPTS, bloqueadoAte: obj.bloqueadoAte };
+            }
+            if (obj.bloqueadoAte && obj.bloqueadoAte <= now) {
+              window.localStorage.removeItem(STORAGE_KEY);
+              return { falhas: 0, bloqueadoAte: 0 };
+            }
+            return { falhas: obj.falhas || 0, bloqueadoAte: 0 };
+          }
+        } catch (_) {}
+        return memState;
+      }
+
+      function saveLockState(st) {
+        memState = st;
+        try {
+          if (st.falhas === 0 && st.bloqueadoAte === 0) {
+            window.localStorage.removeItem(STORAGE_KEY);
+          } else {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(st));
+          }
+        } catch (_) {}
+      }
+
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
+        var st = readLockState();
+        if (st.bloqueadoAte > Date.now()) {
+          var mins = Math.max(1, Math.ceil((st.bloqueadoAte - Date.now()) / 60000));
+          errorEl.textContent = 'Muitas tentativas incorretas. Por segurança, aguarde ' + mins + ' min antes de tentar novamente.';
+          errorEl.style.display = 'block';
+          return;
+        }
+
         var raw = (input.value || '').trim().toUpperCase();
         var normalized = raw.replace(/[^A-Z0-9]/g, '');
         if (!normalized) return;
 
         var digest = await computeSha256Hex(normalized);
         if (digest === EXPECTED_HASH) {
+          saveLockState({ falhas: 0, bloqueadoAte: 0 });
           errorEl.style.display = 'none';
           btnWeb.href = decryptUrl(ENC_WEB, normalized);
           btnApk.href = decryptUrl(ENC_APK, normalized);
@@ -1085,6 +1129,15 @@
           form.style.display = 'none';
           unlockedEl.style.display = 'block';
         } else {
+          var novasFalhas = (st.falhas || 0) + 1;
+          if (novasFalhas >= MAX_ATTEMPTS) {
+            saveLockState({ falhas: novasFalhas, bloqueadoAte: Date.now() + LOCKOUT_MS });
+            errorEl.textContent = 'Muitas tentativas incorretas. Por segurança, aguarde 15 minutos antes de tentar novamente.';
+          } else {
+            var rest = MAX_ATTEMPTS - novasFalhas;
+            saveLockState({ falhas: novasFalhas, bloqueadoAte: 0 });
+            errorEl.textContent = 'Código de convite inválido (' + rest + (rest === 1 ? ' tentativa restante' : ' tentativas restantes') + '). Verifique o código enviado pelo Thiago.';
+          }
           errorEl.style.display = 'block';
         }
       });
