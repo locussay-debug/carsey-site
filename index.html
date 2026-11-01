@@ -3,953 +3,359 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Carsey — O plano de revisão de fábrica do seu carro, traduzido para o seu uso real</title>
-  <meta name="description" content="O Carsey lê o manual oficial da montadora do seu carro (uso normal vs. severo) e calcula exatamente o que fazer por km ou tempo, sem achismo de oficina." />
+  <title>Carsey — Revisão do seu carro em dia, com o plano do manual</title>
+  <meta name="description" content="Saiba o que seu carro precisa e quando, com o plano de revisão conferido no manual do fabricante e a fonte citada. Peça orçamento no WhatsApp, leia notas por foto e controle seus gastos. Grátis no beta." />
+  <link rel="canonical" href="https://carsey.com.br/" />
   <meta name="theme-color" content="#0B3C49" />
-  <meta property="og:title" content="Carsey — Manutenção automotiva sem achismo" />
-  <meta property="og:description" content="O plano de revisão de fábrica do seu carro, traduzido para o seu uso real. Catálogo curado de manuais oficiais, controle de gastos e Dossiê de Revenda em PDF." />
+  <meta name="robots" content="index, follow" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://carsey.com.br" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Carsey" />
+  <meta property="og:url" content="https://carsey.com.br/" />
+  <meta property="og:title" content="Carsey — Revisão do seu carro em dia, com o plano do manual" />
+  <meta property="og:description" content="O plano de revisão do seu carro conferido no manual do fabricante, com a fonte citada. Avisos na hora certa, orçamento no WhatsApp e controle de gastos." />
+  <meta property="og:image" content="https://carsey.com.br/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Carsey — revisão do seu carro em dia, com o plano do manual" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Carsey — Revisão do seu carro em dia, com o plano do manual" />
+  <meta name="twitter:description" content="Plano de revisão conferido no manual, com fonte citada. Grátis no beta." />
+  <meta name="twitter:image" content="https://carsey.com.br/assets/og-image.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Organization","name":"Carsey","url":"https://carsey.com.br/","logo":"https://carsey.com.br/assets/carsey-icon-1024.png","email":"carseyapp@gmail.com","sameAs":["https://instagram.com/carsey_oficial","https://youtube.com/@carseyapp"]},
+    {"@type":"MobileApplication","name":"Carsey","operatingSystem":"Android, Web","applicationCategory":"LifestyleApplication","inLanguage":"pt-BR","description":"App de revisão e manutenção de carros com o plano do manual do fabricante e fonte citada."}
+  ]}
+  </script>
   <style>
-    :root {
-      --petrol-dark: #072A34;
-      --petrol-900: #0B3C49;
-      --petrol-800: #00586E;
-      --petrol-700: #146C7C;
-      --petrol-100: #E6F3F6;
-      --petrol-50: #F2F9FB;
-      --slate-900: #0F172A;
-      --slate-700: #334155;
-      --slate-600: #475569;
-      --slate-400: #94A3B8;
-      --slate-200: #E2E8F0;
-      --slate-100: #F1F5F9;
-      --bg: #F8FAFC;
-      --white: #FFFFFF;
-      --emerald-600: #059669;
-      --emerald-50: #ECFDF5;
-      --amber-500: #F59E0B;
-      --red-600: #DC2626;
-      --red-50: #FEF2F2;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --shadow-card: 0 12px 32px -8px rgba(11, 60, 73, 0.12), 0 4px 12px -4px rgba(11, 60, 73, 0.06);
-      --shadow-hero: 0 24px 48px -12px rgba(7, 42, 52, 0.45);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--slate-900);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Header / Navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(7, 42, 52, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .navbar-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--white);
-    }
-
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      object-fit: contain;
-    }
-
-    .brand-name {
-      font-weight: 800;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-      color: var(--white);
-    }
-
-    .brand-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(20, 108, 124, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #A5F3FC;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-link {
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .nav-link:hover {
-      color: var(--white);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .nav-cta {
-      background: var(--white);
-      color: var(--petrol-900);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.88rem;
-      padding: 9px 16px;
-      border-radius: 10px;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Hero Section */
-    .hero {
-      background: radial-gradient(circle at 85% 15%, rgba(20, 108, 124, 0.42) 0%, transparent 55%),
-                  linear-gradient(155deg, var(--petrol-dark) 0%, var(--petrol-900) 52%, var(--petrol-800) 100%);
-      color: var(--white);
-      padding: 64px 20px 84px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #CFFAFE;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4.2vw, 3.1rem);
-      font-weight: 800;
-      line-height: 1.14;
-      letter-spacing: -0.025em;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      color: #67E8F9;
-    }
-
-    .hero-lead {
-      font-size: 1.08rem;
-      color: rgba(241, 245, 249, 0.9);
-      margin-bottom: 28px;
-      max-width: 580px;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .hero-badge-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.92);
-      background: rgba(255, 255, 255, 0.08);
-      padding: 7px 13px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    /* Invite Gate Card inside Hero */
-    .gate-card {
-      background: var(--white);
-      color: var(--slate-900);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      box-shadow: var(--shadow-hero);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .gate-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .gate-header img {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-    }
-
-    .gate-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--petrol-900);
-      line-height: 1.25;
-    }
-
-    .gate-subtitle {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--petrol-700);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .gate-desc {
-      font-size: 0.92rem;
-      color: var(--slate-600);
-      margin-bottom: 18px;
-    }
-
-    .gate-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .gate-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--slate-700);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .gate-input-wrap {
-      display: flex;
-      gap: 8px;
-    }
-
-    .gate-input {
-      flex: 1;
-      padding: 13px 14px;
-      font-size: 1rem;
-      font-family: inherit;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--petrol-900);
-      background: var(--petrol-50);
-      border: 1.5px solid #B6DCE4;
-      border-radius: var(--radius-sm);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .gate-input:focus {
-      border-color: var(--petrol-800);
-      box-shadow: 0 0 0 3px rgba(0, 88, 110, 0.15);
-    }
-
-    .gate-btn {
-      background: var(--petrol-800);
-      color: var(--white);
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 13px 18px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      font-family: inherit;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-    }
-
-    .gate-btn:hover {
-      background: var(--petrol-900);
-    }
-
-    .gate-btn:active {
-      transform: scale(0.99);
-    }
-
-    .gate-error {
-      display: none;
-      background: var(--red-50);
-      color: var(--red-600);
-      border: 1px solid #FECACA;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .gate-unlocked {
-      display: none;
-      margin-top: 8px;
-      animation: fadeIn 0.25s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .unlocked-banner {
-      background: var(--emerald-50);
-      border: 1px solid #A7F3D0;
-      color: var(--emerald-600);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .unlocked-code-pill {
-      background: var(--white);
-      border: 1px solid #6EE7B7;
-      color: var(--petrol-900);
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      font-size: 0.8rem;
-    }
-
-    .download-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .btn-platform {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .btn-platform:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(11, 60, 73, 0.15);
-    }
-
-    .btn-ios {
-      background: var(--petrol-900);
-      color: var(--white);
-    }
-
-    .btn-android {
-      background: var(--petrol-50);
-      color: var(--petrol-900);
-      border: 1.5px solid #B6DCE4;
-    }
-
-    .platform-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .platform-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .btn-ios .platform-icon {
-      background: rgba(255, 255, 255, 0.14);
-    }
-
-    .btn-android .platform-icon {
-      background: var(--white);
-      border: 1px solid #D5ECF0;
-    }
-
-    .platform-text-main {
-      display: block;
-      font-size: 0.96rem;
-      line-height: 1.25;
-    }
-
-    .platform-text-sub {
-      display: block;
-      font-size: 0.76rem;
-      font-weight: 500;
-      opacity: 0.85;
-      margin-top: 2px;
-    }
-
-    .ios-pwa-guide {
-      margin-top: 14px;
-      background: var(--slate-100);
-      border: 1px solid var(--slate-200);
-      border-radius: 12px;
-      padding: 13px 14px;
-      font-size: 0.83rem;
-      color: var(--slate-700);
-    }
-
-    .ios-pwa-guide strong {
-      color: var(--petrol-900);
-    }
-
-    .ios-pwa-steps {
-      margin-top: 8px;
-      padding-left: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    /* Features Section */
-    .section {
-      padding: 72px 20px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 48px;
-    }
-
-    .section-eyebrow {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--petrol-700);
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: clamp(1.65rem, 3vw, 2.25rem);
-      font-weight: 800;
-      color: var(--slate-900);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .section-subtitle {
-      font-size: 1rem;
-      color: var(--slate-600);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .feature-card {
-      background: var(--white);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--petrol-100);
-      color: var(--petrol-800);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-
-    .feature-card h3 {
-      font-size: 1.18rem;
-      font-weight: 700;
-      color: var(--slate-900);
-    }
-
-    .feature-card p {
-      font-size: 0.95rem;
-      color: var(--slate-600);
-    }
-
-    /* How it works / Dossie highlight */
-    .highlight-banner {
-      background: linear-gradient(135deg, var(--petrol-900) 0%, var(--petrol-800) 100%);
-      color: var(--white);
-      border-radius: 24px;
-      padding: 44px 36px;
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 32px;
-      align-items: center;
-      box-shadow: var(--shadow-card);
-    }
-
-    .highlight-banner h3 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      line-height: 1.25;
-    }
-
-    .highlight-banner p {
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 0.98rem;
-      margin-bottom: 20px;
-    }
-
-    .highlight-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 0.92rem;
-      color: #E0F2FE;
-    }
-
-    .highlight-card-preview {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      padding: 22px;
-      backdrop-filter: blur(8px);
-    }
-
-    .preview-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #A5F3FC;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .preview-stat {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .preview-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .preview-tag {
-      font-size: 0.75rem;
-      padding: 4px 9px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.16);
-      font-weight: 600;
-    }
-
-    /* Channels / Social */
-    .social-section {
-      background: var(--white);
-      border-top: 1px solid var(--slate-200);
-      border-bottom: 1px solid var(--slate-200);
-      padding: 56px 20px;
-    }
-
-    .social-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .social-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      border: 1.5px solid var(--slate-200);
-      color: var(--slate-900);
-      background: var(--bg);
-      transition: border-color 0.2s, transform 0.15s;
-    }
-
-    .social-btn:hover {
-      border-color: var(--petrol-800);
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    .footer {
-      padding: 36px 20px;
-      text-align: center;
-      color: var(--slate-600);
-      font-size: 0.88rem;
-    }
-
-    .footer-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .footer-links a {
-      color: var(--petrol-800);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      .highlight-banner {
-        grid-template-columns: 1fr;
-        padding: 32px 24px;
-      }
-      .nav-link {
-        display: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .gate-input-wrap {
-        flex-direction: column;
-      }
-      .gate-btn {
-        width: 100%;
-      }
-    }
+    :root{--pd:#072A34;--p9:#0B3C49;--p8:#00586E;--p7:#146C7C;--p1:#E6F3F6;--p05:#F2F9FB;--s9:#0F172A;--s7:#334155;--s6:#475569;--s4:#94A3B8;--s2:#E2E8F0;--s1:#F1F5F9;--bg:#F8FAFC;--w:#fff;--em:#059669;--em50:#ECFDF5;--am:#B45309;--am50:#FFFBEB;--red:#DC2626;--red50:#FEF2F2;--wa:#25D366;--r:20px;--sh:0 12px 32px -8px rgba(11,60,73,.12),0 4px 12px -4px rgba(11,60,73,.06)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--s9);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    /* nav */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(7,42,52,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--w)}
+    .brand img{width:38px;height:38px;border-radius:10px}
+    .brand b{font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
+    .badge{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:rgba(20,108,124,.55);border:1px solid rgba(255,255,255,.22);color:#A5F3FC}
+    .nav nav{display:flex;align-items:center;gap:4px}
+    .nav nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.9rem;font-weight:500;padding:8px 12px;border-radius:8px}
+    .nav nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+    .nav nav a.cta{background:#fff;color:var(--p9);font-weight:700;margin-left:8px}
+    /* hero */
+    .hero{background:radial-gradient(circle at 85% 15%,rgba(20,108,124,.42) 0%,transparent 55%),linear-gradient(155deg,var(--pd) 0%,var(--p9) 52%,var(--p8) 100%);color:#fff;padding:64px 0 80px;overflow:hidden}
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 14px;border-radius:999px;font-size:.82rem;font-weight:600;color:#CFFAFE;margin-bottom:20px}
+    .hero h1{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:800;line-height:1.12;letter-spacing:-.025em;margin-bottom:18px}
+    .hero h1 span{color:#67E8F9}
+    .lead{font-size:1.1rem;color:rgba(241,245,249,.9);margin-bottom:28px;max-width:560px}
+    .btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:.98rem;text-decoration:none;transition:transform .15s,box-shadow .15s;border:0;cursor:pointer;font-family:inherit}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+    .btn-w{background:#fff;color:var(--p9)}
+    .btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+    .btn-p{background:var(--p8);color:#fff}
+    .ticks{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.88rem;color:rgba(255,255,255,.88);list-style:none}
+    .ticks li::before{content:"✓ ";color:#67E8F9;font-weight:800}
+    /* phone mockup */
+    .phone{width:300px;margin:0 auto;background:#0b1620;border-radius:40px;padding:12px;box-shadow:0 30px 60px -15px rgba(0,0,0,.55),inset 0 0 0 2px rgba(255,255,255,.08)}
+    .screen{background:var(--bg);border-radius:30px;overflow:hidden;color:var(--s9);min-height:560px}
+    .scr-top{background:linear-gradient(150deg,var(--p9),var(--p8));color:#fff;padding:26px 18px 18px}
+    .scr-top small{opacity:.8;font-size:.72rem;display:block}
+    .scr-top strong{font-size:1.05rem}
+    .health{display:flex;gap:6px;margin-top:12px}
+    .health span{flex:1;background:rgba(255,255,255,.14);border-radius:10px;padding:6px 4px;text-align:center;font-size:.66rem;line-height:1.2}
+    .health b{display:block;font-size:1rem}
+    .scr-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+    .card{background:#fff;border:1px solid var(--s2);border-radius:14px;padding:12px;font-size:.78rem;box-shadow:0 2px 6px rgba(11,60,73,.05)}
+    .card h4{font-size:.86rem;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+    .tag{font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:999px}
+    .t-red{background:var(--red50);color:var(--red)}.t-am{background:var(--am50);color:var(--am)}.t-em{background:var(--em50);color:var(--em)}
+    .card ul{list-style:none;display:flex;flex-direction:column;gap:4px;color:var(--s7);margin-bottom:8px}
+    .wa{display:block;text-align:center;background:var(--wa);color:#073b1c;font-weight:800;border-radius:10px;padding:8px;font-size:.76rem}
+    .src{font-size:.66rem;color:var(--s6);margin-top:6px}
+    .bar{height:7px;background:var(--s1);border-radius:9px;overflow:hidden;margin:6px 0 4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--em),#F59E0B)}
+    /* sections */
+    section{scroll-margin-top:70px}
+    .sec{padding:80px 0}
+    .sec-alt{background:#fff;border-top:1px solid var(--s2);border-bottom:1px solid var(--s2)}
+    .hd{text-align:center;max-width:700px;margin:0 auto 44px}
+    .eyebrow{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--p7);margin-bottom:8px}
+    .hd h2{font-size:clamp(1.65rem,3vw,2.3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;line-height:1.2}
+    .hd p{color:var(--s6);font-size:1.02rem}
+    .strip{background:#fff;border-bottom:1px solid var(--s2)}
+    .strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-top:22px;padding-bottom:22px;text-align:center}
+    .strip b{display:block;color:var(--p9);font-size:1.15rem}
+    .strip span{color:var(--s6);font-size:.85rem}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .feat{background:#fff;border:1px solid var(--s2);border-radius:var(--r);padding:26px;box-shadow:var(--sh)}
+    .feat .ic{width:46px;height:46px;border-radius:12px;background:var(--p1);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:14px}
+    .feat h3{font-size:1.1rem;margin-bottom:8px;line-height:1.3}
+    .feat p{color:var(--s6);font-size:.94rem}
+    .feat.hl{background:linear-gradient(150deg,var(--p9),var(--p8));color:#fff;border:0}
+    .feat.hl p{color:rgba(255,255,255,.88)}.feat.hl .ic{background:rgba(255,255,255,.14)}
+    .new{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;background:#CFFAFE;color:var(--p9);padding:2px 7px;border-radius:999px;vertical-align:middle;margin-left:6px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+    .step{padding:24px;border-radius:var(--r);background:var(--p05);border:1px solid var(--p1)}
+    .step::before{counter-increment:s;content:counter(s);display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--p8);color:#fff;font-weight:800;align-items:center;justify-content:center;margin-bottom:12px}
+    .step h3{font-size:1.05rem;margin-bottom:6px}.step p{color:var(--s6);font-size:.93rem}
+    .cmp{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px;margin:0 auto}
+    .cmp div{border-radius:var(--r);padding:26px;border:1px solid var(--s2);background:#fff}
+    .cmp .us{border:2px solid var(--p8);box-shadow:var(--sh)}
+    .cmp h3{font-size:1.05rem;margin-bottom:12px}
+    .cmp ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:.94rem;color:var(--s7)}
+    .cmp .them li::before{content:"– ";color:var(--s4)}
+    .cmp .us li::before{content:"✓ ";color:var(--em);font-weight:800}
+    .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
+    .shot{text-align:center}
+    .shot .phone{width:250px;padding:10px;border-radius:34px}.shot .screen{min-height:440px;border-radius:26px}
+    .shot figcaption{margin-top:14px;font-weight:700}.shot figcaption span{display:block;font-weight:400;color:var(--s6);font-size:.9rem}
+    .row{display:flex;justify-content:space-between;font-size:.76rem;padding:6px 0;border-bottom:1px dashed var(--s2)}
+    .dossie{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;background:linear-gradient(135deg,var(--p9),var(--p8));color:#fff;border-radius:24px;padding:44px 36px;box-shadow:var(--sh)}
+    .dossie h2{font-size:1.65rem;line-height:1.25;margin-bottom:12px}
+    .dossie p{color:rgba(255,255,255,.88);margin-bottom:16px}
+    .dossie ul{list-style:none;display:flex;flex-direction:column;gap:7px;color:#E0F2FE;font-size:.94rem}
+    .doc{background:#fff;color:var(--s9);border-radius:14px;padding:20px;transform:rotate(2deg);box-shadow:0 20px 40px -12px rgba(0,0,0,.4);font-size:.78rem}
+    .doc h4{color:var(--p9);font-size:.95rem;margin-bottom:8px}
+    /* gate */
+    .gate{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--s2);border-radius:var(--r);padding:30px 26px;box-shadow:var(--sh)}
+    .gate-label{font-size:.78rem;font-weight:700;color:var(--s7);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:8px}
+    .gate-form{display:flex;flex-direction:column;gap:12px}
+    .gate-input-wrap{display:flex;gap:8px}
+    .gate-input{flex:1;padding:13px 14px;font-size:1rem;font-family:inherit;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p9);background:var(--p05);border:1.5px solid #B6DCE4;border-radius:10px;outline:none}
+    .gate-input:focus{border-color:var(--p8);box-shadow:0 0 0 3px rgba(0,88,110,.15)}
+    .gate-btn{background:var(--p8);color:#fff;border:0;border-radius:10px;padding:13px 18px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap}
+    .gate-btn:hover{background:var(--p9)}
+    .gate-error{display:none;background:var(--red50);color:var(--red);border:1px solid #FECACA;padding:10px 12px;border-radius:8px;font-size:.85rem;font-weight:600}
+    .gate-unlocked{display:none}
+    .unlocked-banner{background:var(--em50);border:1px solid #A7F3D0;color:var(--em);padding:10px 12px;border-radius:10px;font-size:.85rem;font-weight:600;margin-bottom:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+    .unlocked-code-pill{background:#fff;border:1px solid #6EE7B7;color:var(--p9);padding:3px 8px;border-radius:6px;font-weight:800;letter-spacing:.05em}
+    .download-actions{display:flex;flex-direction:column;gap:12px}
+    .btn-platform{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;text-decoration:none;font-weight:700}
+    .btn-ios{background:var(--p9);color:#fff}.btn-android{background:var(--p05);color:var(--p9);border:1.5px solid #B6DCE4}
+    .btn-platform small{display:block;font-weight:500;font-size:.76rem;opacity:.85}
+    .ios-pwa-guide{margin-top:14px;background:var(--s1);border:1px solid var(--s2);border-radius:12px;padding:13px 14px;font-size:.83rem;color:var(--s7)}
+    .ios-pwa-guide ol{margin-top:6px;padding-left:18px}
+    .nocode{margin-top:18px;padding-top:16px;border-top:1px solid var(--s2);font-size:.9rem;color:var(--s6);text-align:center}
+    .nocode a{color:var(--p8);font-weight:700}
+    /* faq */
+    .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+    .faq details{background:#fff;border:1px solid var(--s2);border-radius:14px;padding:16px 20px}
+    .faq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+    .faq summary::after{content:"+";color:var(--p8);font-size:1.3rem;line-height:1}
+    .faq details[open] summary::after{content:"–"}
+    .faq details p{margin-top:10px;color:var(--s6);font-size:.95rem}
+    .final{text-align:center;background:linear-gradient(155deg,var(--pd),var(--p8));color:#fff;padding:72px 20px}
+    .final h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:10px}.final p{color:rgba(255,255,255,.88);margin-bottom:26px}
+    .final .btns{justify-content:center}
+    footer{background:var(--pd);color:rgba(255,255,255,.75);font-size:.9rem;padding:48px 0 28px}
+    .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;margin-bottom:28px}
+    footer h4{color:#fff;font-size:.9rem;margin-bottom:10px}
+    footer ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+    footer a{text-decoration:none;color:rgba(255,255,255,.8)}footer a:hover{color:#fff}
+    .fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6)}
+    @media (max-width:900px){.hero .wrap,.dossie,.cmp{grid-template-columns:1fr}.grid3,.steps,.shots{grid-template-columns:1fr}.strip .wrap{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.nav nav a:not(.cta){display:none}.doc{transform:none}}
+    @media (max-width:480px){.gate-input-wrap{flex-direction:column}.btn{width:100%;justify-content:center}}
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a href="#" class="brand">
-        <img src="./assets/carsey-icon-rounded-transparent.png" alt="Logo Carsey" class="brand-icon" />
-        <span class="brand-name">Carsey</span>
-        <span class="brand-badge">Beta Fechado</span>
-      </a>
-      <nav class="nav-actions">
-        <a href="#como-funciona" class="nav-link">Como funciona</a>
-        <a href="#dossie" class="nav-link">Dossiê de Revenda</a>
-        <a href="#canais" class="nav-link">Canais Oficiais</a>
-        <a href="#acesso-beta" class="nav-cta">Acessar Beta</a>
+  <header class="nav">
+    <div class="wrap">
+      <a href="#topo" class="brand"><img src="./assets/carsey-icon-rounded-transparent.png" alt="" width="38" height="38" /><b>Carsey</b><span class="badge">Beta</span></a>
+      <nav aria-label="Principal">
+        <a href="#recursos">Recursos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#faq">Dúvidas</a>
+        <a href="#acesso-beta" class="cta">Entrar no beta</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero + Invite Code Gate -->
-  <section class="hero" id="acesso-beta">
-    <div class="hero-inner">
+  <main id="topo">
+  <section class="hero">
+    <div class="wrap">
       <div>
-        <div class="hero-pill">
-          <span>🔧</span> Manutenção preventiva baseada no manual oficial da montadora
+        <div class="pill">📘 Plano conferido no manual do fabricante, com a fonte citada</div>
+        <h1>Revisão do seu carro em dia, <span>sem achismo.</span></h1>
+        <p class="lead">O Carsey mostra o que o seu carro precisa e quando, de acordo com o manual do fabricante do seu modelo e ano. Avisa antes de vencer, junta o que está pendente e te ajuda a pedir orçamento em 1 toque.</p>
+        <div class="btns">
+          <a href="#acesso-beta" class="btn btn-w">Entrar no beta grátis</a>
+          <a href="mailto:carseyapp@gmail.com?subject=Quero%20o%20Carsey%20na%20Play%20Store" class="btn btn-o">Avise-me na Play Store</a>
         </div>
-        <h1>
-          O plano de revisão de fábrica do seu carro, <span>traduzido para o seu uso real.</span>
-        </h1>
-        <p class="hero-lead">
-          Esqueça o achismo de oficina e as tabelas genéricas. O Carsey lê o manual do proprietário específico do seu veículo e motorização, ajusta para uso normal ou severo e avisa exatamente o que vence por quilometragem ou tempo.
-        </p>
-        <div class="hero-badges">
-          <div class="hero-badge-item">📘 Manuais oficiais curados</div>
-          <div class="hero-badge-item">⏱️ Cálculo por km e tempo</div>
-          <div class="hero-badge-item">🧾 Histórico com fotos de notas</div>
-          <div class="hero-badge-item">📄 Dossiê PDF para revenda</div>
-        </div>
-      </div>
-
-      <!-- Invite Gate Box -->
-      <div class="gate-card">
-        <div class="gate-header">
-          <img src="./assets/carsey-icon-rounded-transparent.png" alt="Ícone Carsey" />
-          <div>
-            <div class="gate-subtitle">Acesso Exclusivo para Convidados</div>
-            <div class="gate-title">Entrar no Beta do Carsey</div>
-          </div>
-        </div>
-        <p class="gate-desc">
-          O Carsey está em fase de testes fechada para convidados. Digite seu código de convite para liberar o Web App (iPhone / iOS) ou baixar o instalador Android (APK).
-        </p>
-
-        <form class="gate-form" id="invite-form" autocomplete="off">
-          <label class="gate-label" for="invite-input">Código de convite (Beta)</label>
-          <div class="gate-input-wrap">
-            <input
-              type="text"
-              id="invite-input"
-              class="gate-input"
-              placeholder="Ex: CSY-0000-BETA"
-              autocapitalize="characters"
-              spellcheck="false"
-              required
-            />
-            <button type="submit" class="gate-btn" id="invite-submit">Liberar acesso</button>
-          </div>
-          <div class="gate-error" id="invite-error" role="alert">
-            Código de convite inválido. Verifique o código enviado pelo Thiago.
-          </div>
-        </form>
-
-        <!-- Revealed only after valid SHA-256 verification -->
-        <div class="gate-unlocked" id="invite-unlocked">
-          <div class="unlocked-banner">
-            <span>✅ Convite validado! Use este mesmo código ao criar sua conta no app:</span>
-            <span class="unlocked-code-pill" id="unlocked-code-display"></span>
-          </div>
-
-          <div class="download-actions">
-            <a href="#" id="btn-open-web" class="btn-platform btn-ios" target="_blank" rel="noopener noreferrer">
-              <div class="platform-left">
-                <div class="platform-icon"></div>
-                <div>
-                  <span class="platform-text-main">Abrir no iPhone (iOS) / Navegador</span>
-                  <span class="platform-text-sub">Web App oficial (PWA) — instale na Tela de Início</span>
-                </div>
-              </div>
-              <span>Abrir ›</span>
-            </a>
-
-            <a href="#" id="btn-download-apk" class="btn-platform btn-android" rel="noopener noreferrer">
-              <div class="platform-left">
-                <div class="platform-icon">🤖</div>
-                <div>
-                  <span class="platform-text-main">Baixar APK para Android</span>
-                  <span class="platform-text-sub">Instalador direto do Beta (v0.1.0)</span>
-                </div>
-              </div>
-              <span>Baixar ↓</span>
-            </a>
-          </div>
-
-          <div class="ios-pwa-guide">
-            <strong>📲 Como instalar no iPhone (iOS):</strong>
-            <ol class="ios-pwa-steps">
-              <li>Toque em <strong>Abrir no iPhone (iOS)</strong> acima pelo <strong>Safari</strong>.</li>
-              <li>Toque no botão <strong>Compartilhar</strong> (quadrado com seta para cima na barra do Safari).</li>
-              <li>Role e toque em <strong>Adicionar à Tela de Início</strong> para usar em tela cheia como app nativo.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section class="section" id="como-funciona">
-    <div class="section-header">
-      <div class="section-eyebrow">Por que o Carsey é diferente</div>
-      <h2 class="section-title">Engenharia da montadora no seu bolso, sem empurroterapia</h2>
-      <p class="section-subtitle">
-        Cada motor tem exigências únicas de óleo, correia, fluido de transmissão, velas e filtros. Nós estruturamos os planos oficiais linha por linha.
-      </p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">📘</div>
-        <h3>Catálogo curado de manuais oficiais</h3>
-        <p>
-          Nada de recomendações genéricas. Os intervalos vêm diretamente dos manuais do proprietário e tabelas de revisão das montadoras, indicando a fonte oficial de cada plano.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🚦</div>
-        <h3>Uso Normal vs. Uso Severo real</h3>
-        <p>
-          Trânsito urbano pesado, trajetos curtos ou poeira mudam completamente o vencimento de óleo e fluidos. O Carsey calcula os dois cenários e projeta sua média mensal de km.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🧾</div>
-        <h3>Histórico completo com fotos de notas</h3>
-        <p>
-          Registre revisões, trocas de peças e gastos avulsos anexando a foto da nota fiscal ou ordem de serviço. Tudo organizado por item do plano e quilometragem.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">📄</div>
-        <h3>Dossiê de Manutenção para Revenda</h3>
-        <p>
-          Vai vender o carro? Gere em segundos um relatório PDF profissional com linha do tempo auditável, status do plano de fábrica e comprovantes para valorizar seu veículo.
-        </p>
-      </div>
-    </div>
-
-    <!-- Dossiê Highlight -->
-    <div class="highlight-banner" id="dossie">
-      <div>
-        <h3>Valorize seu carro na revenda com histórico comprovado</h3>
-        <p>
-          Carros com manutenção documentada vendem mais rápido e por um valor superior. O Dossiê de Revenda do Carsey organiza todo o cuidado que você teve com o veículo em um PDF limpo, pronto para enviar no WhatsApp do comprador.
-        </p>
-        <ul class="highlight-list">
-          <li>✓ Resumo executivo de itens em dia conforme o manual da montadora</li>
-          <li>✓ Histórico cronológico de serviços realizados com km e data</li>
-          <li>✓ Opção de exibir ou ocultar valores gastos e fotos de notas fiscais</li>
+        <ul class="ticks">
+          <li>Grátis no beta</li><li>Android e iPhone (web)</li><li>Seus dados são seus (LGPD)</li>
         </ul>
       </div>
-      <div class="highlight-card-preview">
-        <div class="preview-title">Dossiê de Manutenção Carsey</div>
-        <div class="preview-stat">Relatório Técnico em PDF pronto para compartilhar</div>
-        <div class="preview-tags">
-          <span class="preview-tag">Plano de Fábrica</span>
-          <span class="preview-tag">Leituras de Odômetro</span>
-          <span class="preview-tag">Notas e Recibos</span>
-          <span class="preview-tag">Exportação Instantânea</span>
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="scr-top"><small>Seu carro</small><strong>Onix 1.0 Turbo · 2023</strong>
+            <div class="health"><span><b>2</b>vencidos</span><span><b>1</b>vence logo</span><span><b>14</b>em dia</span></div>
+          </div>
+          <div class="scr-body">
+            <div class="card"><h4>Pacote da vez <span class="tag t-red">2 vencidos</span></h4>
+              <ul><li>• Óleo do motor e filtro</li><li>• Filtro de ar-condicionado</li><li>• Fluido de freio <em>(vence em 800 km)</em></li></ul>
+              <span class="wa">💬 Pedir orçamento no WhatsApp</span>
+              <div class="src">📘 Conforme o manual do fabricante · fonte citada</div>
+            </div>
+            <div class="card"><h4>Pastilhas dianteiras <span class="tag t-am">atenção</span></h4>
+              <div class="bar"><i style="width:35%"></i></div><span style="color:#475569">Cerca de 35% restante (estimativa)</span></div>
+            <div class="card"><h4>Confirme sua km <span class="tag t-em">rápido</span></h4><span style="color:#475569">Está com 41.200 km? Toque para confirmar.</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Official Channels -->
-  <section class="social-section" id="canais">
-    <div class="social-inner">
-      <div class="section-eyebrow">Comunidade & Conteúdo</div>
-      <h2 class="section-title">Acompanhe o Carsey nas redes</h2>
-      <p class="section-subtitle">
-        Dicas técnicas de manutenção preventiva, análises de manuais de montadoras e novidades do aplicativo.
-      </p>
-      <div class="social-buttons">
-        <a href="https://youtube.com/@carseyapp" target="_blank" rel="noopener noreferrer" class="social-btn">
-          <span>▶️</span> YouTube (@carseyapp)
-        </a>
-        <a href="https://instagram.com/carsey_oficial" target="_blank" rel="noopener noreferrer" class="social-btn">
-          <span>📸</span> Instagram (@carsey_oficial)
-        </a>
+  <div class="strip"><div class="wrap">
+    <div><b>Mais de 1.000</b><span>versões de carros</span></div>
+    <div><b>Fonte citada</b><span>em cada plano de revisão</span></div>
+    <div><b>1 toque</b><span>para pedir orçamento</span></div>
+    <div><b>Grátis</b><span>durante o beta</span></div>
+  </div></div>
+
+  <section class="sec" id="recursos">
+    <div class="wrap">
+      <div class="hd"><div class="eyebrow">O que o Carsey faz por você</div>
+        <h2>Tudo o que o seu carro pede, num lugar só</h2>
+        <p>Chega de planilha, papel no porta-luvas e "acho que já está na hora". O Carsey organiza a manutenção para você decidir com segurança.</p></div>
+      <div class="grid3">
+        <div class="feat hl"><div class="ic">📘</div><h3>Plano do manual, com a fonte</h3><p>O plano de revisão do seu modelo e ano, conferido no manual do fabricante. Você vê de onde veio cada recomendação e não depende da palavra de ninguém.</p></div>
+        <div class="feat"><div class="ic">🧰</div><h3>Pacote da vez <span class="new">novo</span></h3><p>O que está vencido ou perto de vencer aparece junto, num cartão só. Um toque e a lista vai pronta para a oficina no WhatsApp, pedindo orçamento.</p></div>
+        <div class="feat"><div class="ic">📸</div><h3>Ler nota <span class="new">novo</span></h3><p>Tire uma foto da nota ou do recibo da oficina e o Carsey preenche o serviço para você: data, valores e itens. Você só confere e salva.</p></div>
+        <div class="feat"><div class="ic">🛞</div><h3>Freios sob controle <span class="new">novo</span></h3><p>Acompanhe pastilhas e discos com uma estimativa de desgaste e saiba quando é hora de olhar antes de virar barulho, ou prejuízo.</p></div>
+        <div class="feat"><div class="ic">🔔</div><h3>Lembretes na hora certa</h3><p>Avisos por quilometragem e por tempo, com a antecedência que você escolher. A confirmação rápida de km mantém tudo atualizado sem esforço.</p></div>
+        <div class="feat"><div class="ic">📊</div><h3>Gastos claros <span class="new">novo</span></h3><p>Veja quanto o carro custou no mês e no ano, por tipo de serviço. Saiba para onde vai o dinheiro e planeje as próximas revisões.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-links">
-        <a href="#acesso-beta">Acesso Beta</a>
-        <a href="#como-funciona">Como funciona</a>
-        <a href="https://youtube.com/@carseyapp" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a href="https://instagram.com/carsey_oficial" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <section class="sec sec-alt" id="como-funciona">
+    <div class="wrap">
+      <div class="hd"><div class="eyebrow">Como funciona</div><h2>Comece em 2 minutos</h2></div>
+      <div class="steps">
+        <div class="step"><h3>Cadastre seu carro</h3><p>Escolha marca, modelo, ano e versão e informe a quilometragem atual.</p></div>
+        <div class="step"><h3>Veja o que vence e quando</h3><p>O Carsey mostra o plano do manual, o que está em dia e o que pede atenção agora.</p></div>
+        <div class="step"><h3>Registre e acompanhe</h3><p>Registre serviços (ou leia a nota por foto), receba lembretes e acompanhe seus gastos.</p></div>
       </div>
-      <p>© 2026 Carsey. Todos os direitos reservados.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="diferencial">
+    <div class="wrap">
+      <div class="hd"><div class="eyebrow">Por que o Carsey</div><h2>Não é tabela genérica. É o plano do seu carro.</h2>
+        <p>Cada carro tem as próprias exigências. O Carsey parte do que o fabricante recomenda para o seu modelo e ano e mostra a fonte.</p></div>
+      <div class="cmp">
+        <div class="them"><h3>Planilha, caderninho ou app genérico</h3><ul><li>Intervalos iguais para qualquer carro</li><li>Você não sabe de onde veio a recomendação</li><li>Itens pendentes espalhados</li><li>Nota fiscal digitada à mão</li></ul></div>
+        <div class="us"><h3>Com o Carsey</h3><ul><li>Plano do seu modelo e ano, conferido no manual</li><li>Fonte citada em cada plano</li><li>Pendências juntas no Pacote da vez, com orçamento no WhatsApp</li><li>Nota lida por foto, em segundos</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-alt" id="telas">
+    <div class="wrap">
+      <div class="hd"><div class="eyebrow">Por dentro do app</div><h2>Simples de usar, do jeito que deveria ser</h2></div>
+      <div class="shots">
+        <figure class="shot"><div class="phone"><div class="screen"><div class="scr-top"><small>Plano de revisão</small><strong>Próximos itens</strong></div><div class="scr-body">
+          <div class="card"><h4>Óleo e filtro <span class="tag t-red">vencido</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
+          <div class="card"><h4>Fluido de freio <span class="tag t-am">em 800 km</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
+          <div class="card"><h4>Velas de ignição <span class="tag t-em">em dia</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
+          <div class="card"><h4>Correia <span class="tag t-em">em dia</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
+        </div></div></div><figcaption>Plano com a fonte<span>Saiba o que vence e de onde vem a recomendação.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><div class="scr-top"><small>Ler nota</small><strong>Nota lida ✓</strong></div><div class="scr-body">
+          <div class="card"><h4>Oficina do Bairro</h4><div class="row"><span>Data</span><b>12/10/2026</b></div><div class="row"><span>Troca de óleo</span><b>R$ 189,00</b></div><div class="row"><span>Filtro de óleo</span><b>R$ 42,00</b></div><div class="row"><span>Total</span><b>R$ 231,00</b></div></div>
+          <span class="wa" style="background:#00586E;color:#fff">Conferir e salvar</span>
+        </div></div></div><figcaption>Ler nota<span>Foto da nota vira registro, sem digitar.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><div class="scr-top"><small>Gastos</small><strong>R$ 1.284 em 2026</strong></div><div class="scr-body">
+          <div class="card"><h4>Por tipo</h4><div class="row"><span>Revisões</span><b>R$ 690</b></div><div class="row"><span>Freios</span><b>R$ 380</b></div><div class="row"><span>Pneus e outros</span><b>R$ 214</b></div></div>
+          <div class="card"><h4>Média mensal</h4><div class="bar"><i style="width:55%;background:#00586E"></i></div><span style="color:#475569">R$ 107 por mês</span></div>
+        </div></div></div><figcaption>Gastos<span>Quanto o carro custa, mês a mês.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="dossie">
+    <div class="wrap"><div class="dossie">
+      <div><h2>Vai vender? Mostre o cuidado que você teve.</h2>
+        <p>Gere um histórico de manutenção em PDF, pronto para enviar ao comprador. Carro com histórico comprovado passa mais confiança na hora de negociar.</p>
+        <ul><li>✓ Itens em dia conforme o manual do fabricante</li><li>✓ Serviços com data e quilometragem</li><li>✓ Você escolhe se mostra valores e notas</li></ul></div>
+      <div class="doc" aria-hidden="true"><h4>Histórico de manutenção · Carsey</h4><div class="row"><span>Revisão 40.000 km</span><b>✓</b></div><div class="row"><span>Pastilhas dianteiras</span><b>✓</b></div><div class="row"><span>Fluido de freio</span><b>✓</b></div><div class="row"><span>Alinhamento</span><b>✓</b></div></div>
+    </div></div>
+  </section>
+
+  <section class="sec sec-alt" id="acesso-beta">
+    <div class="wrap">
+      <div class="hd"><div class="eyebrow">Beta fechado · grátis</div><h2>Entre no beta do Carsey</h2><p>Estamos testando com um grupo de convidados antes de chegar à Play Store. Tem um código de convite? Libere o acesso abaixo.</p></div>
+      <div class="gate">
+        <form class="gate-form" id="invite-form" autocomplete="off">
+          <label class="gate-label" for="invite-input">Código de convite</label>
+          <div class="gate-input-wrap">
+            <input type="text" id="invite-input" class="gate-input" placeholder="Ex: CSY-0000-BETA" autocapitalize="characters" spellcheck="false" required />
+            <button type="submit" class="gate-btn" id="invite-submit">Liberar acesso</button>
+          </div>
+          <div class="gate-error" id="invite-error" role="alert">Código de convite inválido. Confira o código que você recebeu no convite.</div>
+        </form>
+        <div class="gate-unlocked" id="invite-unlocked">
+          <div class="unlocked-banner"><span>✅ Convite validado! Use este mesmo código ao criar sua conta:</span><span class="unlocked-code-pill" id="unlocked-code-display"></span></div>
+          <div class="download-actions">
+            <a href="#" id="btn-open-web" class="btn-platform btn-ios" target="_blank" rel="noopener noreferrer"><span>Abrir no iPhone / navegador<small>Versão web — adicione à Tela de Início</small></span><span>Abrir ›</span></a>
+            <a href="#" id="btn-download-apk" class="btn-platform btn-android" rel="noopener noreferrer"><span>Baixar para Android<small>Instalador da versão beta</small></span><span>Baixar ↓</span></a>
+          </div>
+          <div class="ios-pwa-guide"><strong>📲 No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong>.</li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
+        </div>
+        <p class="nocode">Ainda não tem convite? <a href="mailto:carseyapp@gmail.com?subject=Quero%20um%20convite%20para%20o%20beta%20do%20Carsey">Peça o seu por e-mail</a> e avisamos quando chegar à Play Store.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="wrap">
+      <div class="hd"><div class="eyebrow">Dúvidas frequentes</div><h2>Perguntas e respostas</h2></div>
+      <div class="faq">
+        <details><summary>O Carsey é pago?</summary><p>Durante o beta o Carsey é grátis. Avisaremos com antecedência antes de qualquer mudança.</p></details>
+        <details><summary>Meu carro está no Carsey?</summary><p>Já são mais de 1.000 versões de carros vendidos no Brasil, e a lista cresce toda semana. Se o seu ainda não estiver, fale com a gente.</p></details>
+        <details><summary>De onde vem o plano de revisão?</summary><p>Do que o fabricante recomenda para o seu modelo e ano, conferido no manual. O app mostra a fonte, para você saber de onde veio cada recomendação.</p></details>
+        <details><summary>O Carsey substitui a concessionária ou o mecânico?</summary><p>Não. Ele te ajuda a se organizar e chegar à oficina sabendo o que pedir. A avaliação do mecânico continua importante, principalmente em itens de segurança.</p></details>
+        <details><summary>Funciona no iPhone?</summary><p>Sim, pela versão web, que você pode adicionar à Tela de Início. No Android, o app chega em breve à Play Store.</p></details>
+        <details><summary>Meus dados estão seguros? Posso apagar tudo?</summary><p>Seus dados são seus. Não vendemos informações e você pode exportar ou excluir sua conta quando quiser, direto no app. Veja a <a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a> e <a href="https://app.carsey.com.br/excluir-conta/">como excluir sua conta</a>.</p></details>
+        <details><summary>Quando chega à Play Store?</summary><p>Em breve. <a href="mailto:carseyapp@gmail.com?subject=Quero%20o%20Carsey%20na%20Play%20Store">Deixe seu e-mail</a> e avisamos no lançamento.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Seu carro em dia, sem dor de cabeça.</h2>
+    <p>Entre no beta grátis e veja o plano do seu carro hoje.</p>
+    <div class="btns"><a href="#acesso-beta" class="btn btn-w">Entrar no beta</a><a href="mailto:carseyapp@gmail.com?subject=Quero%20o%20Carsey%20na%20Play%20Store" class="btn btn-o">Avise-me na Play Store</a></div>
+  </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div><a href="#topo" class="brand"><img src="./assets/carsey-icon-rounded-transparent.png" alt="" width="34" height="34" /><b>Carsey</b></a><p style="margin-top:10px">Revisão e manutenção do seu carro, com o plano do manual do fabricante.</p></div>
+        <div><h4>Produto</h4><ul><li><a href="#recursos">Recursos</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#acesso-beta">Entrar no beta</a></li><li><a href="#faq">Dúvidas</a></li></ul></div>
+        <div><h4>Legal</h4><ul><li><a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a></li><li><a href="https://app.carsey.com.br/termos/">Termos de Uso</a></li><li><a href="https://app.carsey.com.br/excluir-conta/">Excluir conta e dados</a></li></ul></div>
+        <div><h4>Contato</h4><ul><li><a href="mailto:carseyapp@gmail.com">carseyapp@gmail.com</a></li><li><a href="https://instagram.com/carsey_oficial" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://youtube.com/@carseyapp" target="_blank" rel="noopener noreferrer">YouTube</a></li></ul></div>
+      </div>
+      <div class="fbot"><span>© 2026 Carsey. Todos os direitos reservados.</span><span>Feito no Brasil 🇧🇷</span></div>
     </div>
   </footer>
-
-  <script>
+<script>
     (function () {
-      // SHA-256 do código normalizado (sem o código em texto puro no código-fonte)
       var EXPECTED_HASH = '3f63bfc2fb0c232b645e49091fbd3b85cba982e14f1232b34e139b9223604682';
-      // Payloads cifrados com keystream SHA-256 derivado do código de convite
       var ENC_APK = '/HMtiMvl08JtpPrmhPbSdLPttbZ95MKEwV8y1YxNypgemjoMvapMfAV+86FErFj9j4VXL8MzYY7WM6PxAAz/HiUIBqp13bEAgo3rfQaT';
       var ENC_WEB = '/HMtiMvl08JprPqnyfPFcfn16aF7742Fxw==';
 
-      // Implementação compacta de SHA-256 (fallback síncrono e compatível com qualquer contexto)
       function sha256Bytes(ascii) {
         function rightRotate(value, amount) {
           return (value >>> amount) | (value << (32 - amount));
@@ -1136,7 +542,7 @@
           } else {
             var rest = MAX_ATTEMPTS - novasFalhas;
             saveLockState({ falhas: novasFalhas, bloqueadoAte: 0 });
-            errorEl.textContent = 'Código de convite inválido (' + rest + (rest === 1 ? ' tentativa restante' : ' tentativas restantes') + '). Verifique o código enviado pelo Thiago.';
+            errorEl.textContent = 'Código de convite inválido (' + rest + (rest === 1 ? ' tentativa restante' : ' tentativas restantes') + '). Confira o código que você recebeu no convite.';
           }
           errorEl.style.display = 'block';
         }

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://carsey.com.br/sitemap.xml
