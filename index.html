@@ -69,22 +69,8 @@
     .ticks li::before{content:"✓ ";color:#67E8F9;font-weight:800}
     /* phone mockup */
     .phone{width:300px;margin:0 auto;background:#0b1620;border-radius:40px;padding:12px;box-shadow:0 30px 60px -15px rgba(0,0,0,.55),inset 0 0 0 2px rgba(255,255,255,.08)}
-    .screen{background:var(--bg);border-radius:30px;overflow:hidden;color:var(--s9);min-height:560px}
-    .scr-top{background:linear-gradient(150deg,var(--p9),var(--p8));color:#fff;padding:26px 18px 18px}
-    .scr-top small{opacity:.8;font-size:.72rem;display:block}
-    .scr-top strong{font-size:1.05rem}
-    .health{display:flex;gap:6px;margin-top:12px}
-    .health span{flex:1;background:rgba(255,255,255,.14);border-radius:10px;padding:6px 4px;text-align:center;font-size:.66rem;line-height:1.2}
-    .health b{display:block;font-size:1rem}
-    .scr-body{padding:14px;display:flex;flex-direction:column;gap:10px}
-    .card{background:#fff;border:1px solid var(--s2);border-radius:14px;padding:12px;font-size:.78rem;box-shadow:0 2px 6px rgba(11,60,73,.05)}
-    .card h4{font-size:.86rem;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
-    .tag{font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:999px}
-    .t-red{background:var(--red50);color:var(--red)}.t-am{background:var(--am50);color:var(--am)}.t-em{background:var(--em50);color:var(--em)}
-    .card ul{list-style:none;display:flex;flex-direction:column;gap:4px;color:var(--s7);margin-bottom:8px}
-    .wa{display:block;text-align:center;background:var(--wa);color:#073b1c;font-weight:800;border-radius:10px;padding:8px;font-size:.76rem}
-    .src{font-size:.66rem;color:var(--s6);margin-top:6px}
-    .bar{height:7px;background:var(--s1);border-radius:9px;overflow:hidden;margin:6px 0 4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--em),#F59E0B)}
+    .screen{background:var(--bg);border-radius:30px;overflow:hidden;aspect-ratio:1080/2340}
+    .screen img{display:block;width:100%;height:100%;object-fit:cover}
     /* sections */
     section{scroll-margin-top:70px}
     .sec{padding:80px 0}
@@ -118,7 +104,7 @@
     .cmp .us li::before{content:"✓ ";color:var(--em);font-weight:800}
     .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
     .shot{text-align:center}
-    .shot .phone{width:250px;padding:10px;border-radius:34px}.shot .screen{min-height:440px;border-radius:26px}
+    .shot .phone{width:250px;padding:10px;border-radius:34px}.shot .screen{border-radius:26px}
     .shot figcaption{margin-top:14px;font-weight:700}.shot figcaption span{display:block;font-weight:400;color:var(--s6);font-size:.9rem}
     .row{display:flex;justify-content:space-between;font-size:.76rem;padding:6px 0;border-bottom:1px dashed var(--s2)}
     .dossie{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;background:linear-gradient(135deg,var(--p9),var(--p8));color:#fff;border-radius:24px;padding:44px 36px;box-shadow:var(--sh)}
@@ -196,22 +182,8 @@
           <li>Grátis no beta</li><li>Android e iPhone (web)</li><li>Seus dados são seus (LGPD)</li>
         </ul>
       </div>
-      <div class="phone" aria-hidden="true">
-        <div class="screen">
-          <div class="scr-top"><small>Seu carro</small><strong>Onix 1.0 Turbo · 2023</strong>
-            <div class="health"><span><b>2</b>vencidos</span><span><b>1</b>vence logo</span><span><b>14</b>em dia</span></div>
-          </div>
-          <div class="scr-body">
-            <div class="card"><h4>Pacote da vez <span class="tag t-red">2 vencidos</span></h4>
-              <ul><li>• Óleo do motor e filtro</li><li>• Filtro de ar-condicionado</li><li>• Fluido de freio <em>(vence em 800 km)</em></li></ul>
-              <span class="wa">💬 Pedir orçamento no WhatsApp</span>
-              <div class="src">📘 Conforme o manual do fabricante · fonte citada</div>
-            </div>
-            <div class="card"><h4>Pastilhas dianteiras <span class="tag t-am">atenção</span></h4>
-              <div class="bar"><i style="width:35%"></i></div><span style="color:#475569">Cerca de 35% restante (estimativa)</span></div>
-            <div class="card"><h4>Confirme sua km <span class="tag t-em">rápido</span></h4><span style="color:#475569">Está com 41.200 km? Toque para confirmar.</span></div>
-          </div>
-        </div>
+      <div class="phone">
+        <div class="screen"><img src="assets/screens/carsey-home-topo.webp" width="1080" height="2340" fetchpriority="high" alt="Tela inicial do Carsey com o carro Meu Pulse (Fiat Pulse 2023 1.0 Turbo 200 Flex), 83.600 km, botões Atualizar km, Registrar serviço e Ler nota, e Saúde do veículo em 84%, com 12 de 14 itens em dia" /></div>
       </div>
     </div>
   </section>
@@ -265,20 +237,9 @@
     <div class="wrap">
       <div class="hd"><div class="eyebrow">Por dentro do app</div><h2>Simples de usar, do jeito que deveria ser</h2></div>
       <div class="shots">
-        <figure class="shot"><div class="phone"><div class="screen"><div class="scr-top"><small>Plano de revisão</small><strong>Próximos itens</strong></div><div class="scr-body">
-          <div class="card"><h4>Óleo e filtro <span class="tag t-red">vencido</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
-          <div class="card"><h4>Fluido de freio <span class="tag t-am">em 800 km</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
-          <div class="card"><h4>Velas de ignição <span class="tag t-em">em dia</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
-          <div class="card"><h4>Correia <span class="tag t-em">em dia</span></h4><div class="src">📘 Fonte: manual do proprietário</div></div>
-        </div></div></div><figcaption>Plano com a fonte<span>Saiba o que vence e de onde vem a recomendação.</span></figcaption></figure>
-        <figure class="shot"><div class="phone"><div class="screen"><div class="scr-top"><small>Ler nota</small><strong>Nota lida ✓</strong></div><div class="scr-body">
-          <div class="card"><h4>Oficina do Bairro</h4><div class="row"><span>Data</span><b>12/10/2026</b></div><div class="row"><span>Troca de óleo</span><b>R$ 189,00</b></div><div class="row"><span>Filtro de óleo</span><b>R$ 42,00</b></div><div class="row"><span>Total</span><b>R$ 231,00</b></div></div>
-          <span class="wa" style="background:#00586E;color:#fff">Conferir e salvar</span>
-        </div></div></div><figcaption>Ler nota<span>Foto da nota vira registro, sem digitar.</span></figcaption></figure>
-        <figure class="shot"><div class="phone"><div class="screen"><div class="scr-top"><small>Gastos</small><strong>R$ 1.284 em 2026</strong></div><div class="scr-body">
-          <div class="card"><h4>Por tipo</h4><div class="row"><span>Revisões</span><b>R$ 690</b></div><div class="row"><span>Freios</span><b>R$ 380</b></div><div class="row"><span>Pneus e outros</span><b>R$ 214</b></div></div>
-          <div class="card"><h4>Média mensal</h4><div class="bar"><i style="width:55%;background:#00586E"></i></div><span style="color:#475569">R$ 107 por mês</span></div>
-        </div></div></div><figcaption>Gastos<span>Quanto o carro custa, mês a mês.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-home-pacote.webp" width="1080" height="2340" loading="lazy" decoding="async" alt="Pacote da vez com 2 serviços vencidos (velas de ignição e fluido de freio), botão Pedir orçamento no WhatsApp e lista de manutenções futuras, com troca de discos de freio estimada pelo desgaste" /></div></div><figcaption>Pacote da vez<span>Pendências juntas e orçamento no WhatsApp em 1 toque.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-plano.webp" width="1080" height="2340" loading="lazy" decoding="async" alt="Tela Plano do Carsey com os itens do Fiat Pulse: velas de ignição e fluido de freio vencidos, discos de freio em dia com troca estimada conforme o desgaste" /></div></div><figcaption>Plano do seu carro<span>Saiba o que vence, quando e o que já está em dia.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-gastos.webp" width="1080" height="2340" loading="lazy" decoding="async" alt="Tela Gastos do Carsey com R$ 920,00 gastos em revisão, gráfico dos últimos 6 meses e o último serviço com a nota fiscal anexada" /></div></div><figcaption>Gastos<span>Quanto o carro custa, com as notas guardadas.</span></figcaption></figure>
       </div>
     </div>
   </section>
