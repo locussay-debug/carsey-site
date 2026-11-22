@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Carsey — Revisão do seu carro em dia, com o plano do manual</title>
-  <meta name="description" content="Saiba o que seu carro precisa e quando, com o plano de revisão conferido no manual do fabricante e a fonte citada. Peça orçamento no WhatsApp, leia notas por foto e controle seus gastos. Grátis no beta." />
+  <meta name="description" content="Saiba o que seu carro precisa e quando, com o plano de revisão conferido no manual do fabricante. Foto do carro, lembretes de revisão, IPVA e licenciamento, gastos com notas e Dossiê de Revenda em PDF, com opção de ocultar os valores." />
   <link rel="canonical" href="https://carsey.com.br/" />
   <meta name="theme-color" content="#0B3C49" />
   <meta name="robots" content="index, follow" />
@@ -13,14 +13,14 @@
   <meta property="og:site_name" content="Carsey" />
   <meta property="og:url" content="https://carsey.com.br/" />
   <meta property="og:title" content="Carsey — Revisão do seu carro em dia, com o plano do manual" />
-  <meta property="og:description" content="O plano de revisão do seu carro conferido no manual do fabricante, com a fonte citada. Avisos na hora certa, orçamento no WhatsApp e controle de gastos." />
+  <meta property="og:description" content="O plano de revisão conferido no manual do fabricante. Foto do carro, lembretes de IPVA e licenciamento, gastos com notas e Dossiê de Revenda em PDF." />
   <meta property="og:image" content="https://carsey.com.br/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Carsey — revisão do seu carro em dia, com o plano do manual" />
+  <meta property="og:image:alt" content="Carsey — revisão do seu carro em dia, com o plano do manual. Disponível no Google Play." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Carsey — Revisão do seu carro em dia, com o plano do manual" />
-  <meta name="twitter:description" content="Plano de revisão conferido no manual, com fonte citada. Grátis no beta." />
+  <meta name="twitter:description" content="Plano de revisão conferido no manual, com fonte citada. Disponível no Google Play." />
   <meta name="twitter:image" content="https://carsey.com.br/assets/og-image.png" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
@@ -30,9 +30,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
-    {"@type":"Organization","name":"Carsey","url":"https://carsey.com.br/","logo":"https://carsey.com.br/assets/carsey-icon-1024.png","email":"carseyapp@gmail.com","sameAs":["https://instagram.com/carsey_oficial","https://youtube.com/@carseyapp"]},
-    {"@type":"MobileApplication","name":"Carsey","operatingSystem":"Android, Web","applicationCategory":"LifestyleApplication","inLanguage":"pt-BR","description":"App de revisão e manutenção de carros com o plano do manual do fabricante e fonte citada."}
+    {"@type":"Organization","name":"Carsey","url":"https://carsey.com.br/","logo":"https://carsey.com.br/assets/carsey-icon-1024.png","email":"carseyapp@gmail.com","sameAs":["https://instagram.com/carsey_oficial","https://youtube.com/@carseyapp","https://play.google.com/store/apps/details?id=com.carsey.app"]},
+    {"@type":"MobileApplication","name":"Carsey","operatingSystem":"Android","applicationCategory":"LifestyleApplication","inLanguage":"pt-BR","url":"https://play.google.com/store/apps/details?id=com.carsey.app","installUrl":"https://play.google.com/store/apps/details?id=com.carsey.app","description":"App de revisão e manutenção de carros com o plano do manual do fabricante e fonte citada. Disponível no Google Play."}
   ]}
+  </script>
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var plat = 'desktop';
+      if (/Android/i.test(ua)) plat = 'android';
+      else if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) plat = 'ios';
+      document.documentElement.classList.add('plat-' + plat);
+    })();
   </script>
   <style>
     :root{--pd:#072A34;--p9:#0B3C49;--p8:#00586E;--p7:#146C7C;--p1:#E6F3F6;--p05:#F2F9FB;--s9:#0F172A;--s7:#334155;--s6:#475569;--s4:#94A3B8;--s2:#E2E8F0;--s1:#F1F5F9;--bg:#F8FAFC;--w:#fff;--em:#059669;--em50:#ECFDF5;--am:#B45309;--am50:#FFFBEB;--red:#DC2626;--red50:#FEF2F2;--wa:#25D366;--r:20px;--sh:0 12px 32px -8px rgba(11,60,73,.12),0 4px 12px -4px rgba(11,60,73,.06)}
@@ -41,13 +50,24 @@
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--s9);line-height:1.6;-webkit-font-smoothing:antialiased}
     a{color:inherit}
     .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    html.plat-android .hide-android,
+    html.plat-ios .hide-ios,
+    html.plat-desktop .hide-desktop{display:none !important}
+    html.plat-android .only-ios,
+    html.plat-android .only-desktop,
+    html.plat-android .only-web,
+    html.plat-ios .only-android,
+    html.plat-ios .only-desktop,
+    html.plat-desktop .only-android,
+    html.plat-desktop .only-ios,
+    html:not(.plat-android):not(.plat-ios) .only-android,
+    html:not(.plat-android):not(.plat-ios) .only-ios{display:none !important}
     /* nav */
     .nav{position:sticky;top:0;z-index:50;background:rgba(7,42,52,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
     .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--w)}
     .brand img{width:38px;height:38px;border-radius:10px}
     .brand b{font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
-    .badge{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:rgba(20,108,124,.55);border:1px solid rgba(255,255,255,.22);color:#A5F3FC}
     .nav nav{display:flex;align-items:center;gap:4px}
     .nav nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.9rem;font-weight:500;padding:8px 12px;border-radius:8px}
     .nav nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
@@ -60,18 +80,21 @@
     .hero h1{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:800;line-height:1.12;letter-spacing:-.025em;margin-bottom:18px}
     .hero h1 span{color:#67E8F9}
     .lead{font-size:1.1rem;color:rgba(241,245,249,.9);margin-bottom:28px;max-width:560px}
-    .btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+    .btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:26px}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:.98rem;text-decoration:none;transition:transform .15s,box-shadow .15s;border:0;cursor:pointer;font-family:inherit}
     .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
     .btn-w{background:#fff;color:var(--p9)}
     .btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
     .btn-p{background:var(--p8);color:#fff}
+    .play-badge{display:inline-flex;align-items:center;line-height:0;transition:transform .15s}
+    .play-badge:hover{transform:translateY(-1px)}
+    .play-badge img{height:80px;width:auto;display:block}
     .ticks{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.88rem;color:rgba(255,255,255,.88);list-style:none}
     .ticks li::before{content:"✓ ";color:#67E8F9;font-weight:800}
     /* phone mockup */
     .phone{width:300px;margin:0 auto;background:#0b1620;border-radius:40px;padding:12px;box-shadow:0 30px 60px -15px rgba(0,0,0,.55),inset 0 0 0 2px rgba(255,255,255,.08)}
-    .screen{background:var(--bg);border-radius:30px;overflow:hidden;aspect-ratio:1080/2340}
-    .screen img{display:block;width:100%;height:100%;object-fit:cover}
+    .screen{background:var(--bg);border-radius:30px;overflow:hidden;aspect-ratio:636/1378}
+    .screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
     /* sections */
     section{scroll-margin-top:70px}
     .sec{padding:80px 0}
@@ -92,7 +115,6 @@
     .feat p{color:var(--s6);font-size:.94rem}
     .feat.hl{background:linear-gradient(150deg,var(--p9),var(--p8));color:#fff;border:0}
     .feat.hl p{color:rgba(255,255,255,.88)}.feat.hl .ic{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);color:#A5F3FC}
-    .new{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;background:#CFFAFE;color:var(--p9);padding:2px 7px;border-radius:999px;vertical-align:middle;margin-left:6px}
     .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
     .step{padding:24px;border-radius:var(--r);background:var(--p05);border:1px solid var(--p1)}
     .step::before{counter-increment:s;content:counter(s);display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--p8);color:#fff;font-weight:800;align-items:center;justify-content:center;margin-bottom:12px}
@@ -108,36 +130,22 @@
     .shot{text-align:center}
     .shot .phone{width:250px;padding:10px;border-radius:34px}.shot .screen{border-radius:26px}
     .shot figcaption{margin-top:14px;font-weight:700}.shot figcaption span{display:block;font-weight:400;color:var(--s6);font-size:.9rem}
-    .row{display:flex;justify-content:space-between;font-size:.76rem;padding:6px 0;border-bottom:1px dashed var(--s2)}
-    .dossie{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;background:linear-gradient(135deg,var(--p9),var(--p8));color:#fff;border-radius:24px;padding:44px 36px;box-shadow:var(--sh)}
+    .dossie{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;background:linear-gradient(135deg,var(--p9),var(--p8));color:#fff;border-radius:24px;padding:44px 36px;box-shadow:var(--sh)}
     .dossie h2{font-size:1.65rem;line-height:1.25;margin-bottom:12px}
     .dossie p{color:rgba(255,255,255,.88);margin-bottom:16px}
     .dossie ul{list-style:none;display:flex;flex-direction:column;gap:7px;color:#E0F2FE;font-size:.94rem}
-    .doc{background:#fff;color:var(--s9);border-radius:14px;padding:20px;transform:rotate(2deg);box-shadow:0 20px 40px -12px rgba(0,0,0,.4);font-size:.78rem}
-    .doc h4{color:var(--p9);font-size:.95rem;margin-bottom:8px}
-    /* gate */
-    .gate{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--s2);border-radius:var(--r);padding:30px 26px;box-shadow:var(--sh)}
-    .gate-label{font-size:.78rem;font-weight:700;color:var(--s7);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:8px}
-    .gate-form{display:flex;flex-direction:column;gap:12px}
-    .gate-input-wrap{display:flex;gap:8px}
-    .gate-input{flex:1;padding:13px 14px;font-size:1rem;font-family:inherit;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p9);background:var(--p05);border:1.5px solid #B6DCE4;border-radius:10px;outline:none}
-    .gate-input:focus{border-color:var(--p8);box-shadow:0 0 0 3px rgba(0,88,110,.15)}
-    .gate-btn{background:var(--p8);color:#fff;border:0;border-radius:10px;padding:13px 18px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap}
-    .gate-btn:hover{background:var(--p9)}
-    .gate-error{display:none;background:var(--red50);color:var(--red);border:1px solid #FECACA;padding:10px 12px;border-radius:8px;font-size:.85rem;font-weight:600}
-    .gate-unlocked{display:none}
-    .unlocked-banner svg,.ios-pwa-guide strong svg{width:16px;height:16px;flex:none;vertical-align:-3px;margin-right:6px}
-    .ios-pwa-guide strong svg{color:var(--p8)}
-    .unlocked-banner{background:var(--em50);border:1px solid #A7F3D0;color:var(--em);padding:10px 12px;border-radius:10px;font-size:.85rem;font-weight:600;margin-bottom:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
-    .unlocked-code-pill{background:#fff;border:1px solid #6EE7B7;color:var(--p9);padding:3px 8px;border-radius:6px;font-weight:800;letter-spacing:.05em}
-    .download-actions{display:flex;flex-direction:column;gap:12px}
-    .btn-platform{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;text-decoration:none;font-weight:700}
-    .btn-ios{background:var(--p9);color:#fff}.btn-android{background:var(--p05);color:var(--p9);border:1.5px solid #B6DCE4}
-    .btn-platform small{display:block;font-weight:500;font-size:.76rem;opacity:.85}
-    .ios-pwa-guide{margin-top:14px;background:var(--s1);border:1px solid var(--s2);border-radius:12px;padding:13px 14px;font-size:.83rem;color:var(--s7)}
+    .dossie .phone{width:240px}
+    /* start */
+    .start{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--s2);border-radius:var(--r);padding:30px 26px;box-shadow:var(--sh);text-align:center}
+    .start .play-badge{margin:0 auto 8px}
+    .start .lead-sm{color:var(--s6);font-size:.95rem;margin-bottom:16px}
+    .start .btn{justify-content:center}
+    .ios-pwa-guide{margin-top:18px;background:var(--s1);border:1px solid var(--s2);border-radius:12px;padding:13px 14px;font-size:.83rem;color:var(--s7);text-align:left}
+    .ios-pwa-guide strong{display:inline-flex;align-items:center;gap:6px}
+    .ios-pwa-guide strong svg{width:16px;height:16px;flex:none;color:var(--p8)}
     .ios-pwa-guide ol{margin-top:6px;padding-left:18px}
-    .nocode{margin-top:18px;padding-top:16px;border-top:1px solid var(--s2);font-size:.9rem;color:var(--s6);text-align:center}
-    .nocode a{color:var(--p8);font-weight:700}
+    .start-web{margin-top:18px;padding-top:16px;border-top:1px solid var(--s2)}
+    .start-web p{color:var(--s6);font-size:.9rem;margin-bottom:12px}
     /* faq */
     .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
     .faq details{background:#fff;border:1px solid var(--s2);border-radius:14px;padding:16px 20px}
@@ -145,6 +153,7 @@
     .faq summary::after{content:"+";color:var(--p8);font-size:1.3rem;line-height:1}
     .faq details[open] summary::after{content:"–"}
     .faq details p{margin-top:10px;color:var(--s6);font-size:.95rem}
+    .faq details a{color:var(--p8);font-weight:700}
     .final{text-align:center;background:linear-gradient(155deg,var(--pd),var(--p8));color:#fff;padding:72px 20px}
     .final h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:10px}.final p{color:rgba(255,255,255,.88);margin-bottom:26px}
     .final .btns{justify-content:center}
@@ -154,19 +163,22 @@
     footer ul{list-style:none;display:flex;flex-direction:column;gap:6px}
     footer a{text-decoration:none;color:rgba(255,255,255,.8)}footer a:hover{color:#fff}
     .fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6)}
-    @media (max-width:900px){.hero .wrap,.dossie,.cmp{grid-template-columns:1fr}.grid3,.steps,.shots{grid-template-columns:1fr}.strip .wrap{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.nav nav a:not(.cta){display:none}.doc{transform:none}}
-    @media (max-width:480px){.gate-input-wrap{flex-direction:column}.btn{width:100%;justify-content:center}}
+    .flegal{margin-top:10px;font-size:.75rem;color:rgba(255,255,255,.45);max-width:720px}
+    @media (max-width:900px){.hero .wrap,.dossie,.cmp{grid-template-columns:1fr}.grid3,.steps,.shots{grid-template-columns:1fr}.strip .wrap{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.nav nav a:not(.cta){display:none}.dossie .phone{margin-top:8px}}
+    @media (max-width:480px){.btn{width:100%;justify-content:center}.play-badge{margin-left:auto;margin-right:auto}}
   </style>
 </head>
 <body>
   <header class="nav">
     <div class="wrap">
-      <a href="#topo" class="brand"><img src="./assets/carsey-icon-rounded-transparent.png" alt="" width="38" height="38" /><b>Carsey</b><span class="badge">Beta</span></a>
+      <a href="#topo" class="brand"><img src="./assets/carsey-icon-rounded-transparent.png" alt="" width="38" height="38" /><b>Carsey</b></a>
       <nav aria-label="Principal">
         <a href="#recursos">Recursos</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#faq">Dúvidas</a>
-        <a href="#acesso-beta" class="cta">Entrar no beta</a>
+        <a href="https://play.google.com/store/apps/details?id=com.carsey.app" class="cta only-android">Baixar na Play</a>
+        <a href="#comecar" class="cta only-ios">Usar no iPhone</a>
+        <a href="#comecar" class="cta only-desktop hide-android hide-ios">Começar</a>
       </nav>
     </div>
   </header>
@@ -177,17 +189,22 @@
       <div>
         <div class="pill"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>Conferido no manual do fabricante</span></div>
         <h1>Revisão do seu carro em dia, <span>sem achismo.</span></h1>
-        <p class="lead">O Carsey mostra o que o seu carro precisa e quando, de acordo com o manual do fabricante do seu modelo e ano. Avisa antes de vencer, junta o que está pendente e te ajuda a pedir orçamento em 1 toque.</p>
+        <p class="lead">O Carsey mostra o que o seu carro precisa e quando, com o plano de revisão conferido no manual do fabricante. Você coloca a foto do carro, recebe lembretes de revisão, IPVA e licenciamento, registra gastos com notas e recibos e monta o Dossiê de Revenda em PDF, com opção de ocultar os valores.</p>
         <div class="btns">
-          <a href="#acesso-beta" class="btn btn-w">Entrar no beta grátis</a>
-          <a href="mailto:carseyapp@gmail.com?subject=Quero%20o%20Carsey%20na%20Play%20Store" class="btn btn-o">Avise-me na Play Store</a>
+          <a class="play-badge hide-ios" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
+          <a href="https://app.carsey.com.br/" class="btn btn-w only-ios">Abrir o Carsey no iPhone</a>
+          <a href="#comecar" class="btn btn-o only-ios">Como usar no iPhone</a>
+          <a href="https://app.carsey.com.br/" class="btn btn-o only-desktop">Usar no navegador</a>
         </div>
         <ul class="ticks">
-          <li>Grátis no beta</li><li>Android e iPhone (web)</li><li>Seus dados são seus (LGPD)</li>
+          <li class="hide-ios">Disponível no Google Play</li>
+          <li class="only-ios">No iPhone, pela web</li>
+          <li class="only-desktop">Também no iPhone, pela web</li>
+          <li>Seus dados são seus (LGPD)</li>
         </ul>
       </div>
       <div class="phone">
-        <div class="screen"><img src="assets/screens/carsey-home-topo.webp" width="1080" height="2340" fetchpriority="high" alt="Tela inicial do Carsey com o carro Meu Pulse (Fiat Pulse 2023 1.0 Turbo 200 Flex), 83.600 km, botões Atualizar km, Registrar serviço e Ler nota, e Saúde do veículo em 84%, com 12 de 14 itens em dia" /></div>
+        <div class="screen"><img src="assets/screens/carsey-inicio.webp" width="636" height="1378" fetchpriority="high" alt="Tela inicial do Carsey com a foto do Fiat Pulse (Meu Pulse, 2023 1.3 Flex), 49.633 km, botões Ler nota e Registrar serviço, Saúde do veículo em 87% com 9 de 14 itens em dia e o Pacote da vez com 5 serviços" /></div>
       </div>
     </div>
   </section>
@@ -196,7 +213,7 @@
     <div><b>Mais de 1.000</b><span>versões de carros</span></div>
     <div><b>Fonte citada</b><span>em cada plano de revisão</span></div>
     <div><b>1 toque</b><span>para pedir orçamento</span></div>
-    <div><b>Grátis</b><span>durante o beta</span></div>
+    <div><b>Dossiê de Revenda</b><span>PDF com opção de ocultar valores</span></div>
   </div></div>
 
   <section class="sec" id="recursos">
@@ -205,12 +222,12 @@
         <h2>Tudo o que o seu carro pede, num lugar só</h2>
         <p>Chega de planilha, papel no porta-luvas e "acho que já está na hora". O Carsey organiza a manutenção para você decidir com segurança.</p></div>
       <div class="grid3">
-        <div class="feat hl"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21V7"/><path d="m16 12 2 2 4-4"/><path d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3"/></svg></div><h3>Plano do manual, com a fonte</h3><p>O plano de revisão do seu modelo e ano, conferido no manual do fabricante. Você vê de onde veio cada recomendação e não depende da palavra de ninguém.</p></div>
-        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div><h3>Pacote da vez <span class="new">novo</span></h3><p>O que está vencido ou perto de vencer aparece junto, num cartão só. Um toque e a lista vai pronta para a oficina no WhatsApp, pedindo orçamento.</p></div>
-        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8h8"/><path d="M7 12h10"/><path d="M7 16h6"/></svg></div><h3>Ler nota <span class="new">novo</span></h3><p>Tire uma foto da nota ou do recibo da oficina e o Carsey preenche o serviço para você: data, valores e itens. Você só confere e salva.</p></div>
-        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><g fill="currentColor" stroke="none"><circle cx="12" cy="6.2" r="1"/><circle cx="17.52" cy="10.21" r="1"/><circle cx="15.41" cy="16.69" r="1"/><circle cx="8.59" cy="16.69" r="1"/><circle cx="6.48" cy="10.21" r="1"/></g></svg></div><h3>Freios sob controle <span class="new">novo</span></h3><p>Acompanhe pastilhas e discos com uma estimativa de desgaste e saiba quando é hora de olhar antes de virar barulho, ou prejuízo.</p></div>
-        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></div><h3>Lembretes na hora certa</h3><p>Avisos por quilometragem e por tempo, com a antecedência que você escolher. A confirmação rápida de km mantém tudo atualizado sem esforço.</p></div>
-        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div><h3>Gastos claros <span class="new">novo</span></h3><p>Veja quanto o carro custou no mês e no ano, por tipo de serviço. Saiba para onde vai o dinheiro e planeje as próximas revisões.</p></div>
+        <div class="feat hl"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21V7"/><path d="m16 12 2 2 4-4"/><path d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3"/></svg></div><h3>Plano do manual, com a fonte</h3><p>O plano de revisão do seu modelo, ano e versão, conferido no manual do fabricante. Você vê de onde veio cada recomendação e não depende da palavra de ninguém.</p></div>
+        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div><h3>Foto do seu carro</h3><p>A foto aparece no início e nas abas do veículo. Ela fica só no seu aparelho, não é enviada ao servidor.</p></div>
+        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></div><h3>Lembretes na hora certa</h3><p>Avisos de revisão por quilometragem e por tempo, além de lembretes de IPVA e licenciamento, com o calendário oficial do seu estado ou o mês que você informar. Você escolhe a antecedência e pode adiar um aviso.</p></div>
+        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div><h3>Pacote da vez</h3><p>O que está vencido ou perto de vencer aparece junto, num cartão só. Um toque e a lista vai pronta para a oficina no WhatsApp, pedindo orçamento.</p></div>
+        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8h8"/><path d="M7 12h10"/><path d="M7 16h6"/></svg></div><h3>Ler nota</h3><p>Tire uma foto da nota ou do recibo, envie um PDF ou leia o QR Code da NFC-e. O Carsey sugere data, valores e itens, e você confere antes de salvar.</p></div>
+        <div class="feat"><div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div><h3>Gastos com notas e recibos</h3><p>Veja quanto o carro custou por categoria — revisão, manutenção avulsa, peças, pneus e outros — com as notas e os recibos guardados. Acompanhe também a evolução dos gastos nos últimos 6 meses.</p></div>
       </div>
     </div>
   </section>
@@ -219,7 +236,7 @@
     <div class="wrap">
       <div class="hd"><div class="eyebrow">Como funciona</div><h2>Comece em 2 minutos</h2></div>
       <div class="steps">
-        <div class="step"><h3>Cadastre seu carro</h3><p>Escolha marca, modelo, ano e versão e informe a quilometragem atual.</p></div>
+        <div class="step"><h3>Cadastre seu carro</h3><p>Escolha marca, modelo, ano e versão e informe a quilometragem atual. Se quiser, coloque a foto do carro.</p></div>
         <div class="step"><h3>Veja o que vence e quando</h3><p>O Carsey mostra o plano do manual, o que está em dia e o que pede atenção agora.</p></div>
         <div class="step"><h3>Registre e acompanhe</h3><p>Registre serviços (ou leia a nota por foto), receba lembretes e acompanhe seus gastos.</p></div>
       </div>
@@ -241,9 +258,9 @@
     <div class="wrap">
       <div class="hd"><div class="eyebrow">Por dentro do app</div><h2>Simples de usar, do jeito que deveria ser</h2></div>
       <div class="shots">
-        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-home-pacote.webp" width="1080" height="2340" loading="lazy" decoding="async" alt="Pacote da vez com 2 serviços vencidos (velas de ignição e fluido de freio), botão Pedir orçamento no WhatsApp e lista de manutenções futuras, com troca de discos de freio estimada pelo desgaste" /></div></div><figcaption>Pacote da vez<span>Pendências juntas e orçamento no WhatsApp em 1 toque.</span></figcaption></figure>
-        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-plano.webp" width="1080" height="2340" loading="lazy" decoding="async" alt="Tela Plano do Carsey com os itens do Fiat Pulse: velas de ignição e fluido de freio vencidos, discos de freio em dia com troca estimada conforme o desgaste" /></div></div><figcaption>Plano do seu carro<span>Saiba o que vence, quando e o que já está em dia.</span></figcaption></figure>
-        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-gastos.webp" width="1080" height="2340" loading="lazy" decoding="async" alt="Tela Gastos do Carsey com R$ 920,00 gastos em revisão, gráfico dos últimos 6 meses e o último serviço com a nota fiscal anexada" /></div></div><figcaption>Gastos<span>Quanto o carro custa, com as notas guardadas.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-plano.webp" width="636" height="1378" loading="lazy" decoding="async" alt="Tela Plano do Carsey do Fiat Pulse, com a foto do carro, aviso de licenciamento em dezembro, Saúde do veículo em 87% e os botões Por item e Plano de fábrica" /></div></div><figcaption>Plano do seu carro<span>O plano de revisão conferido no manual, com o que vence e o que já está em dia.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-lembretes.webp" width="636" height="1378" loading="lazy" decoding="async" alt="Tela Lembretes do Carsey com uma manutenção vencida, licenciamento em 30 dias pelo calendário oficial e IPVA em 30 dias, com a opção de adiar o aviso" /></div></div><figcaption>Lembretes<span>Revisão, IPVA e licenciamento, no prazo certo.</span></figcaption></figure>
+        <figure class="shot"><div class="phone"><div class="screen"><img src="assets/screens/carsey-gastos.webp" width="636" height="1378" loading="lazy" decoding="async" alt="Tela Gastos do Carsey com a foto do Pulse, botão Exportar Histórico para Revenda em PDF, total de R$ 3.640,00 e gastos por categoria, com revisão, pneus e manutenção avulsa" /></div></div><figcaption>Gastos<span>Quanto o carro custa, com as notas e os recibos guardados.</span></figcaption></figure>
       </div>
     </div>
   </section>
@@ -251,33 +268,37 @@
   <section class="sec" id="dossie">
     <div class="wrap"><div class="dossie">
       <div><h2>Vai vender? Mostre o cuidado que você teve.</h2>
-        <p>Gere um histórico de manutenção em PDF, pronto para enviar ao comprador. Carro com histórico comprovado passa mais confiança na hora de negociar.</p>
-        <ul><li>✓ Itens em dia conforme o manual do fabricante</li><li>✓ Serviços com data e quilometragem</li><li>✓ Você escolhe se mostra valores e notas</li></ul></div>
-      <div class="doc" aria-hidden="true"><h4>Histórico de manutenção · Carsey</h4><div class="row"><span>Revisão 40.000 km</span><b>✓</b></div><div class="row"><span>Pastilhas dianteiras</span><b>✓</b></div><div class="row"><span>Fluido de freio</span><b>✓</b></div><div class="row"><span>Alinhamento</span><b>✓</b></div></div>
+        <p>Monte um Dossiê de Revenda em PDF, com os serviços feitos, o plano de manutenção e as fotos das notas, pronto para compartilhar com um comprador. Se preferir, oculte os valores em reais.</p>
+        <ul><li>✓ Serviços com data e quilometragem</li><li>✓ Plano de manutenção</li><li>✓ Fotos das notas</li><li>✓ Opção de ocultar os valores em reais</li></ul></div>
+      <div class="phone">
+        <div class="screen"><img src="assets/screens/carsey-dossie.webp" width="636" height="1378" loading="lazy" decoding="async" alt="Tela Histórico para revenda em PDF do Carsey, com a opção de ocultar os valores em reais e incluir as fotos das notas no Dossiê" /></div>
+      </div>
     </div></div>
   </section>
 
-  <section class="sec sec-alt" id="acesso-beta">
+  <section class="sec sec-alt" id="comecar">
     <div class="wrap">
-      <div class="hd"><div class="eyebrow">Beta fechado · grátis</div><h2>Entre no beta do Carsey</h2><p>Estamos testando com um grupo de convidados antes de chegar à Play Store. Tem um código de convite? Libere o acesso abaixo.</p></div>
-      <div class="gate">
-        <form class="gate-form" id="invite-form" autocomplete="off">
-          <label class="gate-label" for="invite-input">Código de convite</label>
-          <div class="gate-input-wrap">
-            <input type="text" id="invite-input" class="gate-input" placeholder="Ex: CSY-0000-BETA" autocapitalize="characters" spellcheck="false" required />
-            <button type="submit" class="gate-btn" id="invite-submit">Liberar acesso</button>
-          </div>
-          <div class="gate-error" id="invite-error" role="alert">Código de convite inválido. Confira o código que você recebeu no convite.</div>
-        </form>
-        <div class="gate-unlocked" id="invite-unlocked">
-          <div class="unlocked-banner"><span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Convite validado! Use este mesmo código ao criar sua conta:</span><span class="unlocked-code-pill" id="unlocked-code-display"></span></div>
-          <div class="download-actions">
-            <a href="#" id="btn-open-web" class="btn-platform btn-ios" target="_blank" rel="noopener noreferrer"><span>Abrir no iPhone / navegador<small>Versão web — adicione à Tela de Início</small></span><span>Abrir ›</span></a>
-            <a href="#" id="btn-download-apk" class="btn-platform btn-android" rel="noopener noreferrer"><span>Baixar para Android<small>Instalador da versão beta</small></span><span>Baixar ↓</span></a>
-          </div>
-          <div class="ios-pwa-guide"><strong><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong>.</li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
+      <div class="hd"><div class="eyebrow">Comece agora</div>
+        <h2 class="hide-ios">O Carsey já está na Google Play</h2>
+        <h2 class="only-ios">Use o Carsey no iPhone</h2>
+        <p class="only-android">Instale o app oficial no seu Android, direto da loja.</p>
+        <p class="only-ios">No iPhone, use a versão web e adicione à Tela de Início.</p>
+        <p class="only-desktop">No Android, instale pela Google Play. No iPhone e no computador, use pela web.</p>
+      </div>
+      <div class="start">
+        <a class="play-badge hide-ios" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
+        <p class="lead-sm only-android">O atalho oficial do Carsey na Google Play.</p>
+
+        <div class="only-ios">
+          <a href="https://app.carsey.com.br/" class="btn btn-p">Abrir o Carsey no iPhone</a>
+          <div class="ios-pwa-guide"><strong><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong> em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>.</li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
         </div>
-        <p class="nocode">Ainda não tem convite? <a href="mailto:carseyapp@gmail.com?subject=Quero%20um%20convite%20para%20o%20beta%20do%20Carsey">Peça o seu por e-mail</a> e avisamos quando chegar à Play Store.</p>
+
+        <div class="start-web only-desktop">
+          <p>No computador, você também pode usar o Carsey no navegador.</p>
+          <a href="https://app.carsey.com.br/" class="btn btn-p">Usar no navegador</a>
+          <div class="ios-pwa-guide"><strong><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong> em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>.</li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
+        </div>
       </div>
     </div>
   </section>
@@ -286,21 +307,25 @@
     <div class="wrap">
       <div class="hd"><div class="eyebrow">Dúvidas frequentes</div><h2>Perguntas e respostas</h2></div>
       <div class="faq">
-        <details><summary>O Carsey é pago?</summary><p>Durante o beta o Carsey é grátis. Avisaremos com antecedência antes de qualquer mudança.</p></details>
-        <details><summary>Meu carro está no Carsey?</summary><p>Já são mais de 1.000 versões de carros vendidos no Brasil, e a lista cresce toda semana. Se o seu ainda não estiver, fale com a gente.</p></details>
+        <details><summary>Onde baixar o Carsey?</summary><p>O app oficial para Android está na <a href="https://play.google.com/store/apps/details?id=com.carsey.app">Google Play</a>. No iPhone e no computador, use a versão web em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>.</p></details>
+        <details><summary>Meu carro está no Carsey?</summary><p>Já são mais de 1.000 versões de carros vendidos no Brasil, e a lista cresce toda semana. Se o seu ainda não estiver, cadastre no modo básico, com o intervalo de troca de óleo, e fale com a gente para pedirmos a inclusão do modelo.</p></details>
         <details><summary>De onde vem o plano de revisão?</summary><p>Do que o fabricante recomenda para o seu modelo e ano, conferido no manual. O app mostra a fonte, para você saber de onde veio cada recomendação.</p></details>
-        <details><summary>O Carsey substitui a concessionária ou o mecânico?</summary><p>Não. Ele te ajuda a se organizar e chegar à oficina sabendo o que pedir. A avaliação do mecânico continua importante, principalmente em itens de segurança.</p></details>
-        <details><summary>Funciona no iPhone?</summary><p>Sim, pela versão web, que você pode adicionar à Tela de Início. No Android, o app chega em breve à Play Store.</p></details>
-        <details><summary>Meus dados estão seguros? Posso apagar tudo?</summary><p>Seus dados são seus. Não vendemos informações e você pode exportar ou excluir sua conta quando quiser, direto no app. Veja a <a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a> e <a href="https://app.carsey.com.br/excluir-conta/">como excluir sua conta</a>.</p></details>
-        <details><summary>Quando chega à Play Store?</summary><p>Em breve. <a href="mailto:carseyapp@gmail.com?subject=Quero%20o%20Carsey%20na%20Play%20Store">Deixe seu e-mail</a> e avisamos no lançamento.</p></details>
+        <details><summary>O Carsey substitui a concessionária ou o mecânico?</summary><p>Não. Ele te ajuda a se organizar e chegar à oficina sabendo o que pedir. A avaliação do mecânico continua importante, principalmente em itens de segurança. Em caso de dúvida, siga sempre o manual do proprietário do seu veículo.</p></details>
+        <details><summary>Funciona no iPhone?</summary><p>Sim, pela versão web em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>. Abra no Safari e adicione à Tela de Início. No Android, o app está na <a href="https://play.google.com/store/apps/details?id=com.carsey.app">Google Play</a>.</p></details>
+        <details><summary>Meus dados estão seguros? Posso apagar tudo?</summary><p>Seus dados são seus. Não vendemos informações e você pode exportar ou excluir sua conta quando quiser, direto no app. A foto do carro fica só no seu aparelho. Veja a <a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a> e <a href="https://app.carsey.com.br/excluir-conta/">como excluir sua conta</a>.</p></details>
       </div>
     </div>
   </section>
 
   <section class="final">
     <h2>Seu carro em dia, sem dor de cabeça.</h2>
-    <p>Entre no beta grátis e veja o plano do seu carro hoje.</p>
-    <div class="btns"><a href="#acesso-beta" class="btn btn-w">Entrar no beta</a><a href="mailto:carseyapp@gmail.com?subject=Quero%20o%20Carsey%20na%20Play%20Store" class="btn btn-o">Avise-me na Play Store</a></div>
+    <p class="hide-ios">Baixe o Carsey na Google Play e veja o plano do seu carro hoje.</p>
+    <p class="only-ios">Abra o Carsey no iPhone e veja o plano do seu carro hoje.</p>
+    <div class="btns">
+      <a class="play-badge hide-ios" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
+      <a href="https://app.carsey.com.br/" class="btn btn-w only-ios">Abrir o Carsey no iPhone</a>
+      <a href="https://app.carsey.com.br/" class="btn btn-o only-desktop">Usar no navegador</a>
+    </div>
   </section>
   </main>
 
@@ -308,211 +333,13 @@
     <div class="wrap">
       <div class="fgrid">
         <div><a href="#topo" class="brand"><img src="./assets/carsey-icon-rounded-transparent.png" alt="" width="34" height="34" /><b>Carsey</b></a><p style="margin-top:10px">Revisão e manutenção do seu carro, com o plano do manual do fabricante.</p></div>
-        <div><h4>Produto</h4><ul><li><a href="#recursos">Recursos</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#acesso-beta">Entrar no beta</a></li><li><a href="#faq">Dúvidas</a></li></ul></div>
+        <div><h4>Produto</h4><ul><li><a href="#recursos">Recursos</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#comecar">Começar</a></li><li><a href="#faq">Dúvidas</a></li><li class="hide-ios"><a href="https://play.google.com/store/apps/details?id=com.carsey.app">Google Play</a></li></ul></div>
         <div><h4>Legal</h4><ul><li><a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a></li><li><a href="https://app.carsey.com.br/termos/">Termos de Uso</a></li><li><a href="https://app.carsey.com.br/excluir-conta/">Excluir conta e dados</a></li></ul></div>
         <div><h4>Contato</h4><ul><li><a href="mailto:carseyapp@gmail.com">carseyapp@gmail.com</a></li><li><a href="https://instagram.com/carsey_oficial" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://youtube.com/@carseyapp" target="_blank" rel="noopener noreferrer">YouTube</a></li></ul></div>
       </div>
       <div class="fbot"><span>© 2026 Carsey. Todos os direitos reservados.</span><span>Feito no Brasil</span></div>
+      <p class="flegal">Google Play e o logotipo do Google Play são marcas comerciais da Google LLC.</p>
     </div>
   </footer>
-<script>
-    (function () {
-      var EXPECTED_HASH = '3f63bfc2fb0c232b645e49091fbd3b85cba982e14f1232b34e139b9223604682';
-      var ENC_APK = '/HMtiMvl08JtpPrmhPbSdLPttbZ95MKEwV8y1YxNypgemjoMvapMfAV+86FErFj9j4VXL8MzYY7WM6PxAAz/HiUIBqp13bEAgo3rfQaT';
-      var ENC_WEB = '/HMtiMvl08JprPqnyfPFcfn16aF7742Fxw==';
-
-      function sha256Bytes(ascii) {
-        function rightRotate(value, amount) {
-          return (value >>> amount) | (value << (32 - amount));
-        }
-        var mathPow = Math.pow;
-        var maxWord = mathPow(2, 32);
-        var lengthProperty = 'length';
-        var i, j;
-        var result = [];
-        var words = [];
-        var asciiBitLength = ascii[lengthProperty] * 8;
-        var hash = [];
-        var k = [];
-        var primeCounter = 0;
-        var isComposite = {};
-        for (var candidate = 2; primeCounter < 64; candidate++) {
-          if (!isComposite[candidate]) {
-            for (i = 0; i < 313; i += candidate) {
-              isComposite[i] = candidate;
-            }
-            hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
-            k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
-          }
-        }
-        ascii += '\x80';
-        while ((ascii[lengthProperty] % 64) - 56) ascii += '\x00';
-        for (i = 0; i < ascii[lengthProperty]; i++) {
-          j = ascii.charCodeAt(i);
-          words[i >> 2] |= j << (((3 - i) % 4) * 8);
-        }
-        words[words[lengthProperty]] = (asciiBitLength / maxWord) | 0;
-        words[words[lengthProperty]] = asciiBitLength;
-        for (j = 0; j < words[lengthProperty]; ) {
-          var w = words.slice(j, (j += 16));
-          var oldHash = hash;
-          hash = hash.slice(0, 8);
-          for (i = 0; i < 64; i++) {
-            var i2 = i + j;
-            var w15 = w[i - 15], w2 = w[i - 2];
-            var a = hash[0], e = hash[4];
-            var temp1 =
-              hash[7] +
-              (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) +
-              ((e & hash[5]) ^ (~e & hash[6])) +
-              k[i] +
-              (w[i] =
-                i < 16
-                  ? w[i]
-                  : (w[i - 16] +
-                      (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) +
-                      w[i - 7] +
-                      (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))) |
-                    0);
-            var temp2 =
-              (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) +
-              ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
-            hash = [(temp1 + temp2) | 0].concat(hash);
-            hash[4] = (hash[4] + temp1) | 0;
-          }
-          for (i = 0; i < 8; i++) {
-            hash[i] = (hash[i] + oldHash[i]) | 0;
-          }
-        }
-        for (i = 0; i < 8; i++) {
-          for (j = 3; j + 1; j--) {
-            result.push((hash[i] >> (j * 8)) & 255);
-          }
-        }
-        return result;
-      }
-
-      function bytesToHex(bytes) {
-        var hex = '';
-        for (var i = 0; i < bytes.length; i++) {
-          var b = bytes[i].toString(16);
-          hex += b.length === 1 ? '0' + b : b;
-        }
-        return hex;
-      }
-
-      async function computeSha256Hex(str) {
-        if (window.crypto && window.crypto.subtle && window.TextEncoder) {
-          try {
-            var buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-            return bytesToHex(new Uint8Array(buf));
-          } catch (_) {
-            // fallback
-          }
-        }
-        return bytesToHex(sha256Bytes(str));
-      }
-
-      function decryptUrl(encBase64, secret) {
-        var bin = atob(encBase64);
-        var out = '';
-        var block = [];
-        for (var i = 0; i < bin.length; i++) {
-          if (i % 32 === 0) {
-            block = sha256Bytes(secret + '::' + Math.floor(i / 32));
-          }
-          out += String.fromCharCode(bin.charCodeAt(i) ^ block[i % 32]);
-        }
-        return out;
-      }
-
-      function formatInviteDisplay(norm) {
-        if (norm.length === 11) {
-          return norm.slice(0, 3) + '-' + norm.slice(3, 7) + '-' + norm.slice(7);
-        }
-        return norm;
-      }
-
-      var form = document.getElementById('invite-form');
-      var input = document.getElementById('invite-input');
-      var errorEl = document.getElementById('invite-error');
-      var unlockedEl = document.getElementById('invite-unlocked');
-      var codeDisplay = document.getElementById('unlocked-code-display');
-      var btnWeb = document.getElementById('btn-open-web');
-      var btnApk = document.getElementById('btn-download-apk');
-
-      var MAX_ATTEMPTS = 5;
-      var LOCKOUT_MS = 15 * 60 * 1000;
-      var STORAGE_KEY = 'carsey_convite_bloqueio_v1';
-      var memState = { falhas: 0, bloqueadoAte: 0 };
-
-      function readLockState() {
-        try {
-          var raw = window.localStorage.getItem(STORAGE_KEY);
-          if (raw) {
-            var obj = JSON.parse(raw);
-            var now = Date.now();
-            if (obj.bloqueadoAte && obj.bloqueadoAte > now) {
-              return { falhas: obj.falhas || MAX_ATTEMPTS, bloqueadoAte: obj.bloqueadoAte };
-            }
-            if (obj.bloqueadoAte && obj.bloqueadoAte <= now) {
-              window.localStorage.removeItem(STORAGE_KEY);
-              return { falhas: 0, bloqueadoAte: 0 };
-            }
-            return { falhas: obj.falhas || 0, bloqueadoAte: 0 };
-          }
-        } catch (_) {}
-        return memState;
-      }
-
-      function saveLockState(st) {
-        memState = st;
-        try {
-          if (st.falhas === 0 && st.bloqueadoAte === 0) {
-            window.localStorage.removeItem(STORAGE_KEY);
-          } else {
-            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(st));
-          }
-        } catch (_) {}
-      }
-
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        var st = readLockState();
-        if (st.bloqueadoAte > Date.now()) {
-          var mins = Math.max(1, Math.ceil((st.bloqueadoAte - Date.now()) / 60000));
-          errorEl.textContent = 'Muitas tentativas incorretas. Por segurança, aguarde ' + mins + ' min antes de tentar novamente.';
-          errorEl.style.display = 'block';
-          return;
-        }
-
-        var raw = (input.value || '').trim().toUpperCase();
-        var normalized = raw.replace(/[^A-Z0-9]/g, '');
-        if (!normalized) return;
-
-        var digest = await computeSha256Hex(normalized);
-        if (digest === EXPECTED_HASH) {
-          saveLockState({ falhas: 0, bloqueadoAte: 0 });
-          errorEl.style.display = 'none';
-          btnWeb.href = decryptUrl(ENC_WEB, normalized);
-          btnApk.href = decryptUrl(ENC_APK, normalized);
-          codeDisplay.textContent = formatInviteDisplay(normalized);
-          form.style.display = 'none';
-          unlockedEl.style.display = 'block';
-        } else {
-          var novasFalhas = (st.falhas || 0) + 1;
-          if (novasFalhas >= MAX_ATTEMPTS) {
-            saveLockState({ falhas: novasFalhas, bloqueadoAte: Date.now() + LOCKOUT_MS });
-            errorEl.textContent = 'Muitas tentativas incorretas. Por segurança, aguarde 15 minutos antes de tentar novamente.';
-          } else {
-            var rest = MAX_ATTEMPTS - novasFalhas;
-            saveLockState({ falhas: novasFalhas, bloqueadoAte: 0 });
-            errorEl.textContent = 'Código de convite inválido (' + rest + (rest === 1 ? ' tentativa restante' : ' tentativas restantes') + '). Confira o código que você recebeu no convite.';
-          }
-          errorEl.style.display = 'block';
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
