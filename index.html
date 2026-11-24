@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
-    {"@type":"Organization","name":"Carsey","url":"https://carsey.com.br/","logo":"https://carsey.com.br/assets/carsey-icon-1024.png","email":"carseyapp@gmail.com","sameAs":["https://instagram.com/carsey_oficial","https://youtube.com/@carseyapp","https://play.google.com/store/apps/details?id=com.carsey.app"]},
+    {"@type":"Organization","name":"Carsey","url":"https://carsey.com.br/","logo":"https://carsey.com.br/assets/carsey-icon-1024.png","email":"carseyapp@gmail.com","sameAs":["https://instagram.com/carsey_oficial","https://www.youtube.com/@carseybrasil","https://play.google.com/store/apps/details?id=com.carsey.app"]},
     {"@type":"MobileApplication","name":"Carsey","operatingSystem":"Android","applicationCategory":"LifestyleApplication","inLanguage":"pt-BR","url":"https://play.google.com/store/apps/details?id=com.carsey.app","installUrl":"https://play.google.com/store/apps/details?id=com.carsey.app","description":"App de revisão e manutenção de carros com o plano do manual do fabricante e fonte citada. Disponível no Google Play."}
   ]}
   </script>
@@ -136,16 +136,20 @@
     .dossie ul{list-style:none;display:flex;flex-direction:column;gap:7px;color:#E0F2FE;font-size:.94rem}
     .dossie .phone{width:240px}
     /* start */
-    .start{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--s2);border-radius:var(--r);padding:30px 26px;box-shadow:var(--sh);text-align:center}
-    .start .play-badge{margin:0 auto 8px}
-    .start .lead-sm{color:var(--s6);font-size:.95rem;margin-bottom:16px}
-    .start .btn{justify-content:center}
-    .ios-pwa-guide{margin-top:18px;background:var(--s1);border:1px solid var(--s2);border-radius:12px;padding:13px 14px;font-size:.83rem;color:var(--s7);text-align:left}
+    .start-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px;margin:0 auto;align-items:stretch}
+    .start-card{background:#fff;border:1px solid var(--s2);border-radius:var(--r);padding:30px 26px;box-shadow:var(--sh);text-align:center;display:flex;flex-direction:column;align-items:center}
+    .start-card h3{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--p9)}
+    .start-card .lead-sm{color:var(--s6);font-size:.95rem;margin-bottom:18px}
+    .start-android .play-badge{margin:8px auto 0}
+    .start-ios .btn{justify-content:center}
+    .ios-pwa-guide{margin-top:16px;background:var(--s1);border:1px solid var(--s2);border-radius:12px;padding:13px 14px;font-size:.83rem;color:var(--s7);text-align:left;width:100%}
     .ios-pwa-guide strong{display:inline-flex;align-items:center;gap:6px}
     .ios-pwa-guide strong svg{width:16px;height:16px;flex:none;color:var(--p8)}
     .ios-pwa-guide ol{margin-top:6px;padding-left:18px}
-    .start-web{margin-top:18px;padding-top:16px;border-top:1px solid var(--s2)}
-    .start-web p{color:var(--s6);font-size:.9rem;margin-bottom:12px}
+    .ios-pwa-guide li+li{margin-top:4px}
+    .ios-pwa-guide .ios-tip{display:block;margin-top:4px;color:var(--s6)}
+    .appstore-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--s2);font-size:.8rem;color:var(--s6);line-height:1.45;width:100%}
+    html.plat-ios .start-ios{order:-1}
     /* faq */
     .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
     .faq details{background:#fff;border:1px solid var(--s2);border-radius:14px;padding:16px 20px}
@@ -164,8 +168,8 @@
     footer a{text-decoration:none;color:rgba(255,255,255,.8)}footer a:hover{color:#fff}
     .fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6)}
     .flegal{margin-top:10px;font-size:.75rem;color:rgba(255,255,255,.45);max-width:720px}
-    @media (max-width:900px){.hero .wrap,.dossie,.cmp{grid-template-columns:1fr}.grid3,.steps,.shots{grid-template-columns:1fr}.strip .wrap{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.nav nav a:not(.cta){display:none}.dossie .phone{margin-top:8px}}
-    @media (max-width:480px){.btn{width:100%;justify-content:center}.play-badge{margin-left:auto;margin-right:auto}}
+    @media (max-width:900px){.hero .wrap,.dossie,.cmp,.start-grid{grid-template-columns:1fr}.grid3,.steps,.shots{grid-template-columns:1fr}.strip .wrap{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.nav nav a:not(.cta){display:none}.dossie .phone{margin-top:8px}}
+    @media (max-width:480px){.btn{width:100%;justify-content:center}.play-badge{margin-left:auto;margin-right:auto}#comecar .hd h2 .h-break{display:block}}
   </style>
 </head>
 <body>
@@ -192,14 +196,14 @@
         <p class="lead">O Carsey mostra o que o seu carro precisa e quando, com o plano de revisão conferido no manual do fabricante. Você coloca a foto do carro, recebe lembretes de revisão, IPVA e licenciamento, registra gastos com notas e recibos e monta o Dossiê de Revenda em PDF, com opção de ocultar os valores.</p>
         <div class="btns">
           <a class="play-badge hide-ios" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
+          <a href="#comecar" class="btn btn-o hide-ios">Usar no iPhone / Web</a>
           <a href="https://app.carsey.com.br/" class="btn btn-w only-ios">Abrir o Carsey no iPhone</a>
           <a href="#comecar" class="btn btn-o only-ios">Como usar no iPhone</a>
-          <a href="https://app.carsey.com.br/" class="btn btn-o only-desktop">Usar no navegador</a>
         </div>
         <ul class="ticks">
           <li class="hide-ios">Disponível no Google Play</li>
+          <li class="hide-ios">Também no iPhone, pela web</li>
           <li class="only-ios">No iPhone, pela web</li>
-          <li class="only-desktop">Também no iPhone, pela web</li>
           <li>Seus dados são seus (LGPD)</li>
         </ul>
       </div>
@@ -279,26 +283,22 @@
   <section class="sec sec-alt" id="comecar">
     <div class="wrap">
       <div class="hd"><div class="eyebrow">Comece agora</div>
-        <h2 class="hide-ios">O Carsey já está na Google Play</h2>
-        <h2 class="only-ios">Use o Carsey no iPhone</h2>
-        <p class="only-android">Instale o app oficial no seu Android, direto da loja.</p>
-        <p class="only-ios">No iPhone, use a versão web e adicione à Tela de Início.</p>
-        <p class="only-desktop">No Android, instale pela Google Play. No iPhone e no computador, use pela web.</p>
+        <h2>Comece no Android <span class="h-break">ou no iPhone</span></h2>
+        <p>No Android, instale pela Google Play. No iPhone e no computador, use pela web.</p>
       </div>
-      <div class="start">
-        <a class="play-badge hide-ios" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
-        <p class="lead-sm only-android">O atalho oficial do Carsey na Google Play.</p>
-
-        <div class="only-ios">
-          <a href="https://app.carsey.com.br/" class="btn btn-p">Abrir o Carsey no iPhone</a>
-          <div class="ios-pwa-guide"><strong><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong> em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>.</li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
-        </div>
-
-        <div class="start-web only-desktop">
-          <p>No computador, você também pode usar o Carsey no navegador.</p>
-          <a href="https://app.carsey.com.br/" class="btn btn-p">Usar no navegador</a>
-          <div class="ios-pwa-guide"><strong><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong> em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>.</li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
-        </div>
+      <div class="start-grid">
+        <article class="start-card start-android">
+          <h3>No Android</h3>
+          <p class="lead-sm">Instale o app oficial, direto da Google Play.</p>
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
+        </article>
+        <article class="start-card start-ios">
+          <h3>No iPhone e no computador</h3>
+          <p class="lead-sm">Use pela web e, no iPhone, adicione à Tela de Início.</p>
+          <a href="https://app.carsey.com.br/" class="btn btn-p">Usar no iPhone / Web</a>
+          <div class="ios-pwa-guide"><strong><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>No iPhone:</strong><ol><li>Abra pelo <strong>Safari</strong> em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>. <span class="ios-tip">Se o link veio do Instagram ou do WhatsApp, abra no Safari primeiro — o navegador interno não mostra “Adicionar à Tela de Início”.</span></li><li>Toque em <strong>Compartilhar</strong> (quadrado com seta).</li><li>Escolha <strong>Adicionar à Tela de Início</strong>.</li></ol></div>
+          <p class="appstore-note">Em breve na App Store — enquanto isso, use pela web com ícone na Tela de Início.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -311,7 +311,7 @@
         <details><summary>Meu carro está no Carsey?</summary><p>Já são mais de 1.000 versões de carros vendidos no Brasil, e a lista cresce toda semana. Se o seu ainda não estiver, cadastre no modo básico, com o intervalo de troca de óleo, e fale com a gente para pedirmos a inclusão do modelo.</p></details>
         <details><summary>De onde vem o plano de revisão?</summary><p>Do que o fabricante recomenda para o seu modelo e ano, conferido no manual. O app mostra a fonte, para você saber de onde veio cada recomendação.</p></details>
         <details><summary>O Carsey substitui a concessionária ou o mecânico?</summary><p>Não. Ele te ajuda a se organizar e chegar à oficina sabendo o que pedir. A avaliação do mecânico continua importante, principalmente em itens de segurança. Em caso de dúvida, siga sempre o manual do proprietário do seu veículo.</p></details>
-        <details><summary>Funciona no iPhone?</summary><p>Sim, pela versão web em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>. Abra no Safari e adicione à Tela de Início. No Android, o app está na <a href="https://play.google.com/store/apps/details?id=com.carsey.app">Google Play</a>.</p></details>
+        <details><summary>Funciona no iPhone?</summary><p>Sim, pela versão web em <a href="https://app.carsey.com.br/">app.carsey.com.br</a>. Abra no Safari e adicione à Tela de Início. Se o link veio do Instagram ou do WhatsApp, abra no Safari primeiro. Em breve também na App Store. No Android, o app está na <a href="https://play.google.com/store/apps/details?id=com.carsey.app">Google Play</a>.</p></details>
         <details><summary>Meus dados estão seguros? Posso apagar tudo?</summary><p>Seus dados são seus. Não vendemos informações e você pode exportar ou excluir sua conta quando quiser, direto no app. A foto do seu carro fica salva na sua conta, em área privada que só você acessa, e é apagada se você excluir a conta. Veja a <a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a> e <a href="https://app.carsey.com.br/excluir-conta/">como excluir sua conta</a>.</p></details>
       </div>
     </div>
@@ -319,12 +319,13 @@
 
   <section class="final">
     <h2>Seu carro em dia, sem dor de cabeça.</h2>
-    <p class="hide-ios">Baixe o Carsey na Google Play e veja o plano do seu carro hoje.</p>
+    <p class="hide-ios">No Android, baixe na Google Play. No iPhone e no computador, use pela web.</p>
     <p class="only-ios">Abra o Carsey no iPhone e veja o plano do seu carro hoje.</p>
     <div class="btns">
       <a class="play-badge hide-ios" href="https://play.google.com/store/apps/details?id=com.carsey.app"><img src="./assets/pt-br_badge_web_generic.png" alt="Disponível no Google Play" width="207" height="80" /></a>
+      <a href="https://app.carsey.com.br/" class="btn btn-o hide-ios">Usar no iPhone / Web</a>
       <a href="https://app.carsey.com.br/" class="btn btn-w only-ios">Abrir o Carsey no iPhone</a>
-      <a href="https://app.carsey.com.br/" class="btn btn-o only-desktop">Usar no navegador</a>
+      <a href="#comecar" class="btn btn-o only-ios">Como usar no iPhone</a>
     </div>
   </section>
   </main>
@@ -335,7 +336,7 @@
         <div><a href="#topo" class="brand"><img src="./assets/carsey-icon-rounded-transparent.png" alt="" width="34" height="34" /><b>Carsey</b></a><p style="margin-top:10px">Revisão e manutenção do seu carro, com o plano do manual do fabricante.</p></div>
         <div><h4>Produto</h4><ul><li><a href="#recursos">Recursos</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#comecar">Começar</a></li><li><a href="#faq">Dúvidas</a></li><li class="hide-ios"><a href="https://play.google.com/store/apps/details?id=com.carsey.app">Google Play</a></li></ul></div>
         <div><h4>Legal</h4><ul><li><a href="https://app.carsey.com.br/privacidade/">Política de Privacidade</a></li><li><a href="https://app.carsey.com.br/termos/">Termos de Uso</a></li><li><a href="https://app.carsey.com.br/excluir-conta/">Excluir conta e dados</a></li></ul></div>
-        <div><h4>Contato</h4><ul><li><a href="mailto:carseyapp@gmail.com">carseyapp@gmail.com</a></li><li><a href="https://instagram.com/carsey_oficial" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://youtube.com/@carseyapp" target="_blank" rel="noopener noreferrer">YouTube</a></li></ul></div>
+        <div><h4>Contato</h4><ul><li><a href="mailto:carseyapp@gmail.com">carseyapp@gmail.com</a></li><li><a href="https://instagram.com/carsey_oficial" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://www.youtube.com/@carseybrasil" target="_blank" rel="noopener noreferrer">YouTube</a></li></ul></div>
       </div>
       <div class="fbot"><span>© 2026 Carsey. Todos os direitos reservados.</span><span>Feito no Brasil</span></div>
       <p class="flegal">Google Play e o logotipo do Google Play são marcas comerciais da Google LLC.</p>
